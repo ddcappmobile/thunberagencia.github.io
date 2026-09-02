@@ -52,12 +52,12 @@
     .cursor-ring{width:34px;height:34px;border:1px solid rgba(215,255,0,.55);border-radius:50%;transition:width .18s,height .18s,border-color .18s,background .18s}
     .cursor-ring.active{width:54px;height:54px;background:rgba(215,255,0,.08);border-color:rgba(215,255,0,.9)}
     .container{width:min(var(--max), calc(100% - 36px));margin:0 auto;position:relative;z-index:2}
-    .section{padding:110px 0;position:relative}
+    .section{padding:88px 0;position:relative}
     .eyebrow{display:inline-flex;align-items:center;gap:12px;text-transform:uppercase;letter-spacing:.18em;font-size:.72rem;color:var(--acid);font-weight:800;margin-bottom:18px}
     .eyebrow::after{content:"";width:46px;height:1px;background:var(--acid);opacity:.75}
-    .headline{font:700 clamp(2.8rem,5vw,6rem)/.93 "Space Grotesk",sans-serif;letter-spacing:-.06em;margin:0;max-width:820px}
+    .headline{font:700 clamp(2.25rem,3.8vw,4.35rem)/.96 "Space Grotesk",sans-serif;letter-spacing:-.055em;margin:0;max-width:760px}
     .headline em{font-style:normal;color:var(--acid)}
-    .lede{max-width:700px;color:var(--muted);font-size:1.08rem;line-height:1.78;margin:24px 0 0}
+    .lede{max-width:660px;color:var(--muted);font-size:1rem;line-height:1.68;margin:18px 0 0}
     .section-line{border-top:1px solid var(--line)}
     .glass{background:rgba(12,12,12,.66);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,.08);box-shadow:var(--shadow)}
 
@@ -86,15 +86,18 @@
     .mobile-menu a{font:700 2rem/1.02 "Space Grotesk";padding:16px 0;border-bottom:1px solid var(--line)}
     .mobile-menu .btn{margin-top:24px}
 
-    .hero{min-height:100svh;display:grid;align-items:center;padding:132px 0 46px;overflow:hidden}
+    .hero{min-height:92svh;display:grid;align-items:center;padding:122px 0 42px;overflow:hidden}
     .hero-grid{display:grid;grid-template-columns:1.06fr .94fr;gap:34px;align-items:center}
-    .hero h1{font:700 clamp(3.7rem,7vw,7.6rem)/.9 "Space Grotesk";letter-spacing:-.08em;margin:0;max-width:740px}
+    .hero h1{font:700 clamp(3.15rem,5.25vw,5.9rem)/.92 "Space Grotesk";letter-spacing:-.07em;margin:0;max-width:760px}
     .hero h1 .em{display:block;color:var(--acid);text-shadow:0 0 24px rgba(215,255,0,.15)}
-    .hero p{max-width:640px;color:var(--muted);line-height:1.72;font-size:1.08rem;margin:24px 0 32px}
+    .typed-line{display:block;color:var(--acid);min-height:1.05em;text-shadow:0 0 24px rgba(215,255,0,.15)}
+    .typed-caret{display:inline-block;width:3px;height:.78em;background:var(--acid);margin-left:.08em;vertical-align:-.05em;animation:caretBlink .72s steps(1) infinite;box-shadow:0 0 12px rgba(215,255,0,.55)}
+    @keyframes caretBlink{50%{opacity:0}}
+    .hero p{max-width:620px;color:var(--muted);line-height:1.66;font-size:1rem;margin:20px 0 28px}
     .hero-actions{display:flex;flex-wrap:wrap;gap:12px}
     .quick-tags{display:flex;gap:10px;flex-wrap:wrap;margin-top:24px}
     .chip{padding:12px 14px;border:1px solid var(--line);border-radius:999px;background:rgba(255,255,255,.02);font-size:.86rem;color:#e2e5e6}
-    .hero-side{position:relative;min-height:640px;display:grid;place-items:center}
+    .hero-side{position:relative;min-height:540px;display:grid;place-items:center}
     .hero-aura{position:absolute;inset:8% 4%;border-radius:50%;background:radial-gradient(circle, rgba(215,255,0,.22), rgba(215,255,0,.04) 36%, transparent 64%);filter:blur(30px);animation:pulseAura 4.6s ease-in-out infinite}
     @keyframes pulseAura{50%{transform:scale(1.08);opacity:.78}}
     .spiral{position:absolute;width:min(620px,90vw);aspect-ratio:1;border-radius:50%;background:repeating-radial-gradient(circle, transparent 0 20px, rgba(215,255,0,.12) 21px 22px);mask-image:radial-gradient(circle,#000 28%,rgba(0,0,0,.7) 58%, transparent 74%);animation:spinSlow 28s linear infinite;opacity:.75}
@@ -112,15 +115,15 @@
     .stat-card .mini-line{height:2px;width:60px;background:linear-gradient(90deg,var(--acid),transparent);margin-top:14px}
 
     .services-wrap{display:grid;grid-template-columns:.75fr 1.25fr;gap:24px;align-items:start;margin-top:42px}
-    .services-side{padding:36px;border-radius:28px;position:sticky;top:110px}
-    .services-side p{color:var(--muted);line-height:1.74}
+    .services-side{padding:28px;border-radius:24px;position:sticky;top:104px}
+    .services-side p{color:var(--muted);line-height:1.62;font-size:.92rem}
     .services-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
-    .service-card{padding:28px;border-radius:24px;min-height:250px;position:relative;overflow:hidden;isolation:isolate}
+    .service-card{padding:24px;border-radius:22px;min-height:220px;position:relative;overflow:hidden;isolation:isolate}
     .service-card::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at var(--mx,50%) var(--my,50%), rgba(215,255,0,.18), transparent 28%);opacity:0;transition:.22s;z-index:-1}
     .service-card:hover::before{opacity:1}
     .service-icon{width:56px;height:56px;border-radius:18px;display:grid;place-items:center;background:rgba(215,255,0,.08);border:1px solid rgba(215,255,0,.22);color:var(--acid);font-size:1.3rem;margin-bottom:22px}
-    .service-card h3{font:700 1.36rem/1.08 "Space Grotesk";margin:0 0 12px}
-    .service-card p{margin:0;color:var(--muted);line-height:1.68;font-size:.93rem}
+    .service-card h3{font:700 1.18rem/1.08 "Space Grotesk";margin:0 0 10px}
+    .service-card p{margin:0;color:var(--muted);line-height:1.58;font-size:.86rem}
     .service-card .link-indicator{position:absolute;right:22px;top:22px;color:var(--acid);opacity:.45}
 
     .projects-head{display:flex;align-items:end;justify-content:space-between;gap:20px}
@@ -129,7 +132,7 @@
     .filter.active,.filter:hover{background:var(--acid);color:#050505;border-color:var(--acid)}
     .projects-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:20px}
     .project-card{border-radius:22px;overflow:hidden;position:relative}
-    .project-visual{height:216px;position:relative;overflow:hidden;background:linear-gradient(135deg,#1a1a1a,#0b0b0b)}
+    .project-visual{height:205px;position:relative;overflow:hidden;background:linear-gradient(135deg,#1a1a1a,#0b0b0b)}
     .project-visual::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent,rgba(0,0,0,.5));pointer-events:none}
     .browser{position:absolute;inset:14px 14px auto 14px;height:calc(100% - 28px);border:1px solid rgba(255,255,255,.12);border-radius:14px;overflow:hidden;background:rgba(8,8,8,.36)}
     .browser-bar{height:24px;border-bottom:1px solid rgba(255,255,255,.10);display:flex;align-items:center;gap:5px;padding:0 10px}
@@ -137,6 +140,11 @@
     .browser-body{height:calc(100% - 24px);display:flex;align-items:center;justify-content:center;text-align:center;padding:18px}
     .browser-body strong{font:700 1.18rem/1.1 "Space Grotesk";letter-spacing:-.04em}
     .browser-body span{display:block;color:#d6d7d7;margin-top:6px;font-size:.72rem}
+    .site-shot{position:absolute;left:0;right:0;top:24px;bottom:0;overflow:hidden;background:#101010}
+    .site-shot img{width:100%;height:100%;object-fit:cover;object-position:top center;transition:object-position 3.8s cubic-bezier(.2,.7,.2,1), transform .5s ease;filter:saturate(.94) contrast(1.02)}
+    .project-card:hover .site-shot img{object-position:bottom center;transform:scale(1.015)}
+    .site-shot::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 60%,rgba(0,0,0,.26));pointer-events:none}
+    .preview-loading{position:absolute;inset:0;display:grid;place-items:center;color:var(--acid);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;background:linear-gradient(135deg,#121212,#080808);z-index:-1}
     .bg-umkal{background:linear-gradient(135deg,#2f2a22,#0d0d0d)}
     .bg-cecilia{background:linear-gradient(135deg,#ede2d4,#8d7d6a)}
     .bg-yalle{background:linear-gradient(135deg,#2f4654,#b58b4d)}
@@ -154,8 +162,8 @@
     .mini-btn:hover{transform:translateY(-1px)}
 
     .case-split{display:grid;grid-template-columns:.9fr 1.1fr;gap:22px;align-items:start}
-    .result-side{padding:34px;border-radius:28px;position:sticky;top:110px}
-    .result-side p{color:var(--muted);line-height:1.76}
+    .result-side{padding:28px;border-radius:24px;position:sticky;top:104px}
+    .result-side p{color:var(--muted);line-height:1.62;font-size:.92rem}
     .results-panel{padding:26px;border-radius:28px;display:grid;gap:16px}
     .results-top{display:flex;justify-content:space-between;align-items:center;gap:18px;padding-bottom:18px;border-bottom:1px solid var(--line)}
     .results-brand{display:flex;gap:14px;align-items:center}
@@ -221,6 +229,36 @@
     .tilt{transform-style:preserve-3d;transition:transform .18s ease, box-shadow .18s ease}
     .tilt:hover{box-shadow:0 30px 100px rgba(0,0,0,.45),0 0 0 1px rgba(215,255,0,.16) inset}
 
+
+    .site-shot{position:relative;height:calc(100% - 24px);overflow:hidden;background:#0a0a0a}
+    .preview-static{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top center;z-index:1;opacity:.92;transition:transform .7s ease,opacity .35s ease}
+    .project-card:hover .preview-static{transform:scale(1.035)}
+    .site-shot iframe{position:absolute;left:0;top:0;width:200%;height:200%;border:0;transform:scale(.5);transform-origin:0 0;opacity:0;transition:opacity .45s ease, transform .7s cubic-bezier(.2,.7,.2,1);background:#fff;pointer-events:none}
+    .site-shot.loaded iframe{opacity:1}
+    .project-card:hover .site-shot.loaded iframe{transform:scale(.52) translateY(-5%)}
+    .preview-fallback{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:20px;background:radial-gradient(circle at 50% 15%,rgba(215,255,0,.12),transparent 42%),linear-gradient(145deg,#141414,#080808);z-index:0}
+    .site-shot.loaded .preview-static{opacity:0}
+    .preview-fallback strong{font:700 1rem "Space Grotesk";letter-spacing:-.03em;color:#fff;max-width:90%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+    .preview-fallback small{color:var(--muted);font-size:.68rem;margin-top:6px}
+    .preview-kicker{font-size:.57rem;letter-spacing:.2em;color:var(--acid);font-weight:800;margin-bottom:8px}
+    .preview-domain{position:absolute;right:8px;bottom:8px;z-index:3;padding:5px 8px;border-radius:999px;background:rgba(0,0,0,.72);border:1px solid rgba(255,255,255,.12);backdrop-filter:blur(8px);font-size:.58rem;color:#dce0e0;max-width:80%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+
+    .tech-stack{padding:84px 0 92px;overflow:hidden;position:relative;border-top:1px solid var(--line)}
+    .tech-stack::before,.tech-stack::after{content:"";position:absolute;top:0;bottom:0;width:min(16vw,180px);z-index:5;pointer-events:none}
+    .tech-stack::before{left:0;background:linear-gradient(90deg,var(--bg),transparent)}
+    .tech-stack::after{right:0;background:linear-gradient(-90deg,var(--bg),transparent)}
+    .tech-heading{display:flex;align-items:end;justify-content:space-between;gap:24px;margin-bottom:32px}
+    .tech-heading .headline{font-size:clamp(2.1rem,3.6vw,3.8rem)}
+    .tech-note{max-width:480px;color:var(--muted);line-height:1.65;font-size:.92rem}
+    .tech-marquee{display:flex;overflow:hidden;mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent);-webkit-mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent)}
+    .tech-track{display:flex;align-items:center;gap:12px;width:max-content;animation:techScroll 38s linear infinite;padding:8px 6px}
+    .tech-marquee:hover .tech-track{animation-play-state:paused}
+    .tech-item{width:154px;height:82px;flex:0 0 154px;display:flex;align-items:center;gap:12px;padding:14px 16px;border:1px solid rgba(255,255,255,.085);border-radius:18px;background:rgba(13,13,13,.7);box-shadow:0 12px 38px rgba(0,0,0,.2);transition:.25s ease}
+    .tech-item:hover{transform:translateY(-5px);border-color:rgba(215,255,0,.36);background:rgba(215,255,0,.045);box-shadow:0 0 30px rgba(215,255,0,.09)}
+    .tech-item img{width:34px;height:34px;object-fit:contain;filter:saturate(.85) brightness(1.08)}
+    .tech-item span{font-size:.83rem;font-weight:700;color:#eef0f0;line-height:1.15}
+    @keyframes techScroll{to{transform:translateX(-50%)}}
+
     @media (max-width:1080px){
       .hero-grid,.services-wrap,.case-split,.lab-grid,.cta-panel{grid-template-columns:1fr}
       .hero-side{min-height:520px}
@@ -249,10 +287,16 @@
       .lab-printer{position:relative;right:auto;bottom:auto;width:min(360px,100%);margin:180px auto 0}
       .floating-panel{position:relative;right:auto;top:auto;max-width:100%;margin-top:18px}
       .footer-row{flex-direction:column;align-items:flex-start}
+      .tech-stack{padding:68px 0 72px}
+      .tech-heading{display:block}
+      .tech-note{margin-top:14px}
+      .tech-item{width:132px;flex-basis:132px;height:74px;padding:12px}
+      .tech-item img{width:30px;height:30px}
     }
     @media (prefers-reduced-motion: reduce){
       *,*::before,*::after{animation-duration:.01ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important;scroll-behavior:auto !important}
       .cursor,.cursor-ring{display:none}
+      .tech-track{animation:none}
     }
   </style>
   <script type="application/ld+json">
@@ -283,6 +327,7 @@
           <a href="#resultados">Resultados</a>
           <a href="#lab">Lab</a>
           <a href="#galeria">Físico</a>
+          <a href="#tecnologias">Stack</a>
           <a href="#contato">Contato</a>
         </div>
         <a class="btn btn-primary magnetic" href="#contato">Vamos conversar <span class="round">↗</span></a>
@@ -297,6 +342,7 @@
     <a href="#resultados">Resultados</a>
     <a href="#lab">Lab</a>
     <a href="#galeria">Físico</a>
+    <a href="#tecnologias">Stack</a>
     <a href="#contato">Contato</a>
     <a class="btn btn-primary" href="#contato">Agendar conversa <span class="round">↗</span></a>
   </div>
@@ -307,8 +353,8 @@
         <div class="hero-grid">
           <div>
             <div class="eyebrow reveal">Agência digital & física</div>
-            <h1 class="reveal">Pensamos o negócio. Projetamos a experiência. <span class="em">Construímos a solução.</span></h1>
-            <p class="reveal">A Thunber atua entre estratégia, produto e engenharia para resolver problemas reais de negócio. Pesquisa, aquisição, software, automação, experiências imersivas e prototipagem física conectados em uma única operação.</p>
+            <h1 class="reveal">Do problema à solução. <span class="typed-line">Construímos <span id="typedText">sites que convertem.</span><span class="typed-caret" aria-hidden="true"></span></span></h1>
+            <p class="reveal">Pesquisa, produto, design e engenharia na mesma frente. Criamos sites, sistemas, automações, experiências imersivas e protótipos físicos sem perder o contexto do negócio no caminho.</p>
             <div class="hero-actions reveal">
               <a class="btn btn-primary magnetic" href="#contato">Apresente seu desafio <span class="round">↗</span></a>
               <a class="btn btn-ghost" href="#projetos">Ver portfólio</a>
@@ -349,10 +395,10 @@
         </div>
 
         <div class="hero-cards">
-          <article class="stat-card glass reveal tilt"><strong>Antes de construir, entendemos.</strong><span>Mercado, usuário, concorrência, operação e oportunidade entram na decisão antes da primeira linha de código.</span><div class="mini-line"></div></article>
-          <article class="stat-card glass reveal tilt"><strong>Tecnologia com função.</strong><span>Não desenvolvemos tecnologia por volume. Cada solução precisa reduzir atrito, gerar eficiência ou abrir receita.</span><div class="mini-line"></div></article>
-          <article class="stat-card glass reveal tilt"><strong>Do software ao objeto.</strong><span>A mesma lógica de produto pode terminar em uma interface, uma automação, uma experiência imersiva ou uma peça física.</span><div class="mini-line"></div></article>
-          <article class="stat-card glass reveal tilt"><strong>Capacidade multidisciplinar.</strong><span>Estratégia, design, desenvolvimento, automação, pesquisa e prototipagem trabalhando como uma única frente.</span><div class="mini-line"></div></article>
+          <article class="stat-card glass reveal tilt"><strong>Entender antes de construir.</strong><span>Pesquisa e contexto antes da primeira linha de código.</span><div class="mini-line"></div></article>
+          <article class="stat-card glass reveal tilt"><strong>Tecnologia com função.</strong><span>A solução precisa reduzir atrito, ganhar eficiência ou abrir receita.</span><div class="mini-line"></div></article>
+          <article class="stat-card glass reveal tilt"><strong>Do software ao objeto.</strong><span>Interface, automação, VR/AR ou peça física — conforme o problema pedir.</span><div class="mini-line"></div></article>
+          <article class="stat-card glass reveal tilt"><strong>Uma frente, várias disciplinas.</strong><span>Estratégia, design e engenharia trabalhando juntas.</span><div class="mini-line"></div></article>
         </div>
       </div>
     </section>
@@ -360,23 +406,23 @@
     <section class="section section-line" id="servicos">
       <div class="container">
         <div class="eyebrow">Serviços</div>
-        <h2 class="headline">Uma estrutura capaz de atuar do <em>problema à entrega.</em></h2>
+        <h2 class="headline">Do diagnóstico à <em>entrega.</em></h2>
         <div class="services-wrap">
           <aside class="services-side glass reveal">
-            <p>Entramos onde existe uma lacuna entre o que a empresa precisa fazer e o que sua operação atual consegue entregar. Podemos investigar o problema, desenhar a solução, desenvolver, automatizar, testar e colocar em produção.</p>
+            <p>Investigamos o gargalo, desenhamos a solução e levamos até produção.</p>
             <div class="quick-tags">
               <span class="chip">Pesquisa</span><span class="chip">Leads</span><span class="chip">Marketing</span><span class="chip">Web</span><span class="chip">IA</span><span class="chip">3D</span>
             </div>
           </aside>
           <div class="services-grid">
-            <article class="service-card glass reveal tilt"><span class="link-indicator">↗</span><div class="service-icon">◎</div><h3>Estratégia & Pesquisa</h3><p>Pesquisa de mercado, análise competitiva, comportamento, validação de hipóteses e diagnóstico para reduzir decisões baseadas em suposição.</p></article>
-            <article class="service-card glass reveal tilt"><span class="link-indicator">↗</span><div class="service-icon">⌁</div><h3>Captação de Leads</h3><p>Estruturação da jornada de aquisição: oferta, landing pages, captura, qualificação, CRM, follow-up e automação comercial.</p></article>
-            <article class="service-card glass reveal tilt"><span class="link-indicator">↗</span><div class="service-icon">◖</div><h3>Marketing & Conteúdo</h3><p>Conteúdo e distribuição conectados ao posicionamento do negócio, com métricas que ajudam a decidir o que continuar, corrigir ou escalar.</p></article>
-            <article class="service-card glass reveal tilt"><span class="link-indicator">↗</span><div class="service-icon">&lt;/&gt;</div><h3>Web & Desenvolvimento</h3><p>Produtos web rápidos, responsivos e orientados à tarefa: sites, plataformas, e-commerce, portais, APIs, integrações e dashboards.</p></article>
-            <article class="service-card glass reveal tilt"><span class="link-indicator">↗</span><div class="service-icon">⌘</div><h3>Automações & IA</h3><p>Automação de processos, integrações entre sistemas, agentes e fluxos com IA para reduzir trabalho manual e aumentar previsibilidade operacional.</p></article>
-            <article class="service-card glass reveal tilt"><span class="link-indicator">↗</span><div class="service-icon">⌬</div><h3>Sistemas sob Demanda</h3><p>Quando uma ferramenta pronta não resolve, projetamos software para a regra de negócio, o fluxo e a realidade operacional da empresa.</p></article>
+            <article class="service-card glass reveal tilt"><span class="link-indicator">↗</span><div class="service-icon">◎</div><h3>Estratégia & Pesquisa</h3><p>Mercado, concorrência, comportamento e validação para decidir com evidência.</p></article>
+            <article class="service-card glass reveal tilt"><span class="link-indicator">↗</span><div class="service-icon">⌁</div><h3>Captação de Leads</h3><p>Oferta, landing pages, captura, CRM, follow-up e automação comercial.</p></article>
+            <article class="service-card glass reveal tilt"><span class="link-indicator">↗</span><div class="service-icon">◖</div><h3>Marketing & Conteúdo</h3><p>Conteúdo e distribuição conectados ao posicionamento e às métricas do negócio.</p></article>
+            <article class="service-card glass reveal tilt"><span class="link-indicator">↗</span><div class="service-icon">&lt;/&gt;</div><h3>Web & Desenvolvimento</h3><p>Sites, plataformas, e-commerce, APIs e dashboards rápidos e responsivos.</p></article>
+            <article class="service-card glass reveal tilt"><span class="link-indicator">↗</span><div class="service-icon">⌘</div><h3>Automações & IA</h3><p>Fluxos, integrações e IA para reduzir trabalho manual e aumentar previsibilidade.</p></article>
+            <article class="service-card glass reveal tilt"><span class="link-indicator">↗</span><div class="service-icon">⌬</div><h3>Sistemas sob Demanda</h3><p>Software desenhado para a regra e o fluxo real da operação.</p></article>
             <article class="service-card glass reveal tilt"><span class="link-indicator">↗</span><div class="service-icon">◉</div><h3>VR/AR</h3><p>Experiências imersivas e aplicações de realidade mista, virtual e aumentada.</p></article>
-            <article class="service-card glass reveal tilt"><span class="link-indicator">↗</span><div class="service-icon">◇</div><h3>Impressão 3D</h3><p>Modelagem e fabricação rápida para validar forma, função e apresentação antes de investir em produção, além de peças e objetos personalizados.</p></article>
+            <article class="service-card glass reveal tilt"><span class="link-indicator">↗</span><div class="service-icon">◇</div><h3>Impressão 3D</h3><p>Modelagem e fabricação rápida para validar forma, função e acabamento.</p></article>
           </div>
         </div>
       </div>
@@ -387,8 +433,8 @@
         <div class="projects-head">
           <div>
             <div class="eyebrow">Projetos</div>
-            <h2 class="headline">Trabalho que existe fora do <em>portfólio.</em></h2>
-            <p class="lede">Projetos publicados e operações reais em diferentes segmentos. Cada entrega parte de um contexto diferente — marca, aquisição, produto, plataforma, operação ou experiência.</p>
+            <h2 class="headline">Projetos reais. <em>Sites no ar.</em></h2>
+            <p class="lede">Acesse os projetos publicados e veja a entrega funcionando no ambiente real.</p>
           </div>
         </div>
 
@@ -401,35 +447,35 @@
 
         <div class="projects-grid" id="projectGrid">
           <article class="project-card glass reveal tilt" data-category="site">
-            <div class="project-visual bg-umkal"><div class="browser"><div class="browser-bar"><i></i><i></i><i></i></div><div class="browser-body"><div><strong>UMKAL</strong><span>umkal.com.br</span></div></div></div></div>
+            <div class="project-visual bg-umkal"><div class="browser"><div class="browser-bar"><i></i><i></i><i></i></div><div class="site-shot live-preview" data-url="https://umkal.com.br"><div class="preview-fallback"><span class="preview-kicker">SITE AO VIVO</span><strong>umkal.com.br</strong><small>Prévia carregada diretamente do projeto</small></div><img class="preview-static" loading="lazy" decoding="async" src="https://image.thum.io/get/width/900/crop/620/noanimate/https://umkal.com.br" alt="Captura do site umkal.com.br" onerror="this.style.display='none'"><iframe title="Prévia de umkal.com.br" loading="lazy" sandbox="allow-scripts allow-same-origin allow-forms allow-popups" referrerpolicy="no-referrer-when-downgrade"></iframe><div class="preview-domain">umkal.com.br</div></div></div></div>
             <div class="project-content"><h3>Umkal</h3><p>Site institucional</p><div class="project-actions"><a class="mini-btn" href="https://umkal.com.br" target="_blank" rel="noopener">Abrir site</a><button class="mini-btn primary project-open" data-project="Umkal">Ver case</button></div></div>
           </article>
           <article class="project-card glass reveal tilt" data-category="site">
-            <div class="project-visual bg-cecilia"><div class="browser"><div class="browser-bar"><i></i><i></i><i></i></div><div class="browser-body"><div><strong>Cecília Sumaia</strong><span>ceciliasuamaia.com.br</span></div></div></div></div>
+            <div class="project-visual bg-cecilia"><div class="browser"><div class="browser-bar"><i></i><i></i><i></i></div><div class="site-shot live-preview" data-url="https://ceciliasuamaia.com.br"><div class="preview-fallback"><span class="preview-kicker">SITE AO VIVO</span><strong>ceciliasuamaia.com.br</strong><small>Prévia carregada diretamente do projeto</small></div><img class="preview-static" loading="lazy" decoding="async" src="https://image.thum.io/get/width/900/crop/620/noanimate/https://ceciliasuamaia.com.br" alt="Captura do site ceciliasuamaia.com.br" onerror="this.style.display='none'"><iframe title="Prévia de ceciliasuamaia.com.br" loading="lazy" sandbox="allow-scripts allow-same-origin allow-forms allow-popups" referrerpolicy="no-referrer-when-downgrade"></iframe><div class="preview-domain">ceciliasuamaia.com.br</div></div></div></div>
             <div class="project-content"><h3>Cecília Sumaia</h3><p>Site institucional</p><div class="project-actions"><a class="mini-btn" href="https://ceciliasuamaia.com.br" target="_blank" rel="noopener">Abrir site</a><button class="mini-btn primary project-open" data-project="Cecília Sumaia">Ver case</button></div></div>
           </article>
           <article class="project-card glass reveal tilt" data-category="site">
-            <div class="project-visual bg-yalle"><div class="browser"><div class="browser-bar"><i></i><i></i><i></i></div><div class="browser-body"><div><strong>Yalle Tarique</strong><span>yalletarique.com.br</span></div></div></div></div>
+            <div class="project-visual bg-yalle"><div class="browser"><div class="browser-bar"><i></i><i></i><i></i></div><div class="site-shot live-preview" data-url="https://yalletarique.com.br"><div class="preview-fallback"><span class="preview-kicker">SITE AO VIVO</span><strong>yalletarique.com.br</strong><small>Prévia carregada diretamente do projeto</small></div><img class="preview-static" loading="lazy" decoding="async" src="https://image.thum.io/get/width/900/crop/620/noanimate/https://yalletarique.com.br" alt="Captura do site yalletarique.com.br" onerror="this.style.display='none'"><iframe title="Prévia de yalletarique.com.br" loading="lazy" sandbox="allow-scripts allow-same-origin allow-forms allow-popups" referrerpolicy="no-referrer-when-downgrade"></iframe><div class="preview-domain">yalletarique.com.br</div></div></div></div>
             <div class="project-content"><h3>Yalle Tarique</h3><p>Site institucional</p><div class="project-actions"><a class="mini-btn" href="https://yalletarique.com.br" target="_blank" rel="noopener">Abrir site</a><button class="mini-btn primary project-open" data-project="Yalle Tarique">Ver case</button></div></div>
           </article>
           <article class="project-card glass reveal tilt" data-category="platform">
-            <div class="project-visual bg-surplus"><div class="browser"><div class="browser-bar"><i></i><i></i><i></i></div><div class="browser-body"><div><strong>Surplus</strong><span>surpluscontabilidade.com.br</span></div></div></div></div>
+            <div class="project-visual bg-surplus"><div class="browser"><div class="browser-bar"><i></i><i></i><i></i></div><div class="site-shot live-preview" data-url="https://surpluscontabilidade.com.br"><div class="preview-fallback"><span class="preview-kicker">SITE AO VIVO</span><strong>surpluscontabilidade.com.br</strong><small>Prévia carregada diretamente do projeto</small></div><img class="preview-static" loading="lazy" decoding="async" src="https://image.thum.io/get/width/900/crop/620/noanimate/https://surpluscontabilidade.com.br" alt="Captura do site surpluscontabilidade.com.br" onerror="this.style.display='none'"><iframe title="Prévia de surpluscontabilidade.com.br" loading="lazy" sandbox="allow-scripts allow-same-origin allow-forms allow-popups" referrerpolicy="no-referrer-when-downgrade"></iframe><div class="preview-domain">surpluscontabilidade.com.br</div></div></div></div>
             <div class="project-content"><h3>Surplus Contabilidade</h3><p>Plataforma / site</p><div class="project-actions"><a class="mini-btn" href="https://surpluscontabilidade.com.br" target="_blank" rel="noopener">Abrir site</a><button class="mini-btn primary project-open" data-project="Surplus Contabilidade">Ver case</button></div></div>
           </article>
           <article class="project-card glass reveal tilt" data-category="commerce">
-            <div class="project-visual bg-poderosa"><div class="browser"><div class="browser-bar"><i></i><i></i><i></i></div><div class="browser-body"><div><strong>Poderosa Beleza</strong><span>poderosabeleza.com.br</span></div></div></div></div>
+            <div class="project-visual bg-poderosa"><div class="browser"><div class="browser-bar"><i></i><i></i><i></i></div><div class="site-shot live-preview" data-url="https://poderosabeleza.com.br"><div class="preview-fallback"><span class="preview-kicker">SITE AO VIVO</span><strong>poderosabeleza.com.br</strong><small>Prévia carregada diretamente do projeto</small></div><img class="preview-static" loading="lazy" decoding="async" src="https://image.thum.io/get/width/900/crop/620/noanimate/https://poderosabeleza.com.br" alt="Captura do site poderosabeleza.com.br" onerror="this.style.display='none'"><iframe title="Prévia de poderosabeleza.com.br" loading="lazy" sandbox="allow-scripts allow-same-origin allow-forms allow-popups" referrerpolicy="no-referrer-when-downgrade"></iframe><div class="preview-domain">poderosabeleza.com.br</div></div></div></div>
             <div class="project-content"><h3>Poderosa Beleza</h3><p>E-commerce</p><div class="project-actions"><a class="mini-btn" href="https://poderosabeleza.com.br" target="_blank" rel="noopener">Abrir site</a><button class="mini-btn primary project-open" data-project="Poderosa Beleza">Ver case</button></div></div>
           </article>
           <article class="project-card glass reveal tilt" data-category="commerce">
-            <div class="project-visual bg-adega"><div class="browser"><div class="browser-bar"><i></i><i></i><i></i></div><div class="browser-body"><div><strong>Adega Virtual</strong><span>adegavirtual.com.br</span></div></div></div></div>
-            <div class="project-content"><h3>Adega Virtual</h3><p>E-commerce</p><div class="project-actions"><a class="mini-btn" href="https://adegavirtual.com.br" target="_blank" rel="noopener">Abrir site</a><button class="mini-btn primary project-open" data-project="Adega Virtual">Ver case</button></div></div>
+            <div class="project-visual bg-adega"><div class="browser"><div class="browser-bar"><i></i><i></i><i></i></div><div class="site-shot live-preview" data-url="https://www.adegavirtual.com/"><div class="preview-fallback"><span class="preview-kicker">SITE AO VIVO</span><strong>www.adegavirtual.com</strong><small>Prévia carregada diretamente do projeto</small></div><img class="preview-static" loading="lazy" decoding="async" src="https://image.thum.io/get/width/900/crop/620/noanimate/https://www.adegavirtual.com/" alt="Captura do site www.adegavirtual.com" onerror="this.style.display='none'"><iframe title="Prévia de www.adegavirtual.com" loading="lazy" sandbox="allow-scripts allow-same-origin allow-forms allow-popups" referrerpolicy="no-referrer-when-downgrade"></iframe><div class="preview-domain">www.adegavirtual.com</div></div></div></div>
+            <div class="project-content"><h3>Adega Virtual</h3><p>E-commerce</p><div class="project-actions"><a class="mini-btn" href="https://www.adegavirtual.com/" target="_blank" rel="noopener">Abrir site</a><button class="mini-btn primary project-open" data-project="Adega Virtual">Ver case</button></div></div>
           </article>
           <article class="project-card glass reveal tilt" data-category="platform">
-            <div class="project-visual bg-bgames"><div class="browser"><div class="browser-bar"><i></i><i></i><i></i></div><div class="browser-body"><div><strong>Brazilian Games</strong><span>braziliangames.com.br</span></div></div></div></div>
+            <div class="project-visual bg-bgames"><div class="browser"><div class="browser-bar"><i></i><i></i><i></i></div><div class="site-shot live-preview" data-url="https://braziliangames.com.br"><div class="preview-fallback"><span class="preview-kicker">SITE AO VIVO</span><strong>braziliangames.com.br</strong><small>Prévia carregada diretamente do projeto</small></div><img class="preview-static" loading="lazy" decoding="async" src="https://image.thum.io/get/width/900/crop/620/noanimate/https://braziliangames.com.br" alt="Captura do site braziliangames.com.br" onerror="this.style.display='none'"><iframe title="Prévia de braziliangames.com.br" loading="lazy" sandbox="allow-scripts allow-same-origin allow-forms allow-popups" referrerpolicy="no-referrer-when-downgrade"></iframe><div class="preview-domain">braziliangames.com.br</div></div></div></div>
             <div class="project-content"><h3>Brazilian Games</h3><p>Marketplace gamer</p><div class="project-actions"><a class="mini-btn" href="https://braziliangames.com.br" target="_blank" rel="noopener">Abrir site</a><button class="mini-btn primary project-open" data-project="Brazilian Games">Ver case</button></div></div>
           </article>
           <article class="project-card glass reveal tilt" data-category="platform">
-            <div class="project-visual bg-dr"><div class="browser"><div class="browser-bar"><i></i><i></i><i></i></div><div class="browser-body"><div><strong>Dr de Bolso</strong><span>drdebolso.vercel.app</span></div></div></div></div>
+            <div class="project-visual bg-dr"><div class="browser"><div class="browser-bar"><i></i><i></i><i></i></div><div class="site-shot live-preview" data-url="https://drdebolso.vercel.app"><div class="preview-fallback"><span class="preview-kicker">SITE AO VIVO</span><strong>drdebolso.vercel.app</strong><small>Prévia carregada diretamente do projeto</small></div><img class="preview-static" loading="lazy" decoding="async" src="https://image.thum.io/get/width/900/crop/620/noanimate/https://drdebolso.vercel.app" alt="Captura do site drdebolso.vercel.app" onerror="this.style.display='none'"><iframe title="Prévia de drdebolso.vercel.app" loading="lazy" sandbox="allow-scripts allow-same-origin allow-forms allow-popups" referrerpolicy="no-referrer-when-downgrade"></iframe><div class="preview-domain">drdebolso.vercel.app</div></div></div></div>
             <div class="project-content"><h3>Dr de Bolso</h3><p>Plataforma</p><div class="project-actions"><a class="mini-btn" href="https://drdebolso.vercel.app" target="_blank" rel="noopener">Abrir site</a><button class="mini-btn primary project-open" data-project="Dr de Bolso">Ver case</button></div></div>
           </article>
         </div>
@@ -441,8 +487,8 @@
         <div class="case-split">
           <aside class="result-side glass reveal">
             <div class="eyebrow">Resultados</div>
-            <h2 class="headline">Quando processo e conteúdo deixam de trabalhar <em>separados.</em></h2>
-            <p>A Ophelia foi criada para transformar uma rotina fragmentada de social media em uma operação coordenada. Em menos de 15 dias de uso, um cliente já apresentou evolução orgânica sem investimento em mídia — um sinal inicial de que estratégia, execução e automação estavam funcionando em conjunto.</p>
+            <h2 class="headline">Menos de 15 dias. <em>Zero mídia paga.</em></h2>
+            <p>A Ophelia conectou estratégia, conteúdo e automação. Em menos de 15 dias, um cliente já apresentou evolução orgânica sem investimento em mídia.</p>
             <div class="quick-tags"><span class="chip">&lt; 15 dias</span><span class="chip">Orgânico</span><span class="chip">Sem budget</span><span class="chip">Social Media</span></div>
           </aside>
           <div class="results-panel glass reveal">
@@ -469,7 +515,7 @@
         <div class="lab-grid" style="margin-top:32px">
           <div class="lab-main glass reveal">
             <div class="floating-panel glass"><b>Impressão 3D & Prototipagem</b><span style="color:var(--muted);font-size:.9rem;line-height:1.65">Prototipagem rápida para transformar uma ideia digital em algo que pode ser segurado, testado e apresentado.</span></div>
-            <p style="max-width:420px;color:var(--muted);line-height:1.78;position:relative;z-index:2">Quando o produto precisa sair do navegador, continuamos o processo. Prototipamos objetos, componentes, peças de apresentação e experiências físicas para testar ideias rapidamente e aproximar conceito de uso real.</p>
+            <p style="max-width:420px;color:var(--muted);line-height:1.78;position:relative;z-index:2">Quando o produto precisa sair do navegador, prototipamos e fabricamos para testar a ideia no mundo real.</p>
             <div class="lab-printer parallax" aria-hidden="true">
               <div class="frame-bar top"></div><div class="frame-bar bottom"></div><div class="head"></div><div class="print"></div><div class="bed"></div>
             </div>
@@ -488,7 +534,7 @@
         <div class="gallery-intro">
           <div>
             <div class="eyebrow">Projetos físicos</div>
-            <h2 class="headline">Protótipos que transformam conceito em <em>evidência física.</em></h2>
+            <h2 class="headline">Da tela para a <em>bancada.</em></h2>
           </div>
         </div>
         <div class="gallery-grid">
@@ -508,13 +554,26 @@
       </div>
     </section>
 
+
+    <section class="tech-stack" id="tecnologias">
+      <div class="container">
+        <div class="tech-heading">
+          <div><div class="eyebrow">Stack & ferramentas</div><h2 class="headline">Tecnologia escolhida pelo <em>problema.</em></h2></div>
+          <p class="tech-note">Da interface à infraestrutura, combinamos ferramentas de produto, desenvolvimento, automação, dados, cloud e experiências imersivas conforme a necessidade de cada projeto.</p>
+        </div>
+      </div>
+      <div class="tech-marquee" aria-label="Tecnologias utilizadas pela Thunber">
+        <div class="tech-track"><div class="tech-item"><img loading="lazy" src="https://cdn.simpleicons.org/html5/E34F26" alt="HTML5"><span>HTML5</span></div><div class="tech-item"><img loading="lazy" src="https://cdn.simpleicons.org/css3/1572B6" alt="CSS3"><span>CSS3</span></div><div class="tech-item"><img loading="lazy" src="https://cdn.simpleicons.org/javascript/F7DF1E" alt="JavaScript"><span>JavaScript</span></div><div class="tech-item"><img loading="lazy" src="https://cdn.simpleicons.org/typescript/3178C6" alt="TypeScript"><span>TypeScript</span></div><div class="tech-item"><img loading="lazy" src="https://cdn.simpleicons.org/angular/DD0031" alt="Angular"><span>Angular</span></div><div class="tech-item"><img loading="lazy" src="https://cdn.simpleicons.org/nodedotjs/5FA04E" alt="Node.js"><span>Node.js</span></div><div class="tech-item"><img loading="lazy" src="https://cdn.simpleicons.org/express/FFFFFF" alt="Express"><span>Express</span></div><div class="tech-item"><img loading="lazy" src="https://cdn.simpleicons.org/openjdk/FFFFFF" alt="Java"><span>Java</span></div><div class="tech-item"><img loading="lazy" src="https://cdn.simpleicons.org/spring/6DB33F" alt="Spring"><span>Spring</span></div><div class="tech-item"><img loading="lazy" src="https://cdn.simpleicons.org/python/3776AB" alt="Python"><span>Python</span></div><div class="tech-item"><img loading="lazy" src="https://cdn.simpleicons.org/postgresql/4169E1" alt="PostgreSQL"><span>PostgreSQL</span></div><div class="tech-item"><img loading="lazy" src="https://cdn.simpleicons.org/mariadb/C0765A" alt="MariaDB"><span>MariaDB</span></div><div class="tech-item"><img loading="lazy" src="https://cdn.simpleicons.org/docker/2496ED" alt="Docker"><span>Docker</span></div><div class="tech-item"><img loading="lazy" src="https://cdn.simpleicons.org/github/FFFFFF" alt="GitHub"><span>GitHub</span></div><div class="tech-item"><img loading="lazy" src="https://cdn.simpleicons.org/googlecloud/4285F4" alt="Google Cloud"><span>Google Cloud</span></div><div class="tech-item"><img loading="lazy" src="https://cdn.simpleicons.org/cloudflare/F38020" alt="Cloudflare"><span>Cloudflare</span></div><div class="tech-item"><img loading="lazy" src="https://cdn.simpleicons.org/n8n/EA4B71" alt="n8n"><span>n8n</span></div><div class="tech-item"><img loading="lazy" src="https://cdn.simpleicons.org/threedotjs/FFFFFF" alt="Three.js"><span>Three.js</span></div><div class="tech-item"><img loading="lazy" src="https://cdn.simpleicons.org/unity/FFFFFF" alt="Unity"><span>Unity</span></div><div class="tech-item"><img loading="lazy" src="https://cdn.simpleicons.org/figma/F24E1E" alt="Figma"><span>Figma</span></div><div class="tech-item"><img loading="lazy" src="https://cdn.simpleicons.org/powerapps/742774" alt="Power Apps"><span>Power Apps</span></div><div class="tech-item"><img loading="lazy" src="https://cdn.simpleicons.org/powerautomate/0066FF" alt="Power Automate"><span>Power Automate</span></div><div class="tech-item"><img loading="lazy" src="https://cdn.simpleicons.org/microsoftsharepoint/038387" alt="SharePoint"><span>SharePoint</span></div><div class="tech-item"><img loading="lazy" src="https://cdn.simpleicons.org/firebase/FFCA28" alt="Firebase"><span>Firebase</span></div><div class="tech-item"><img loading="lazy" src="https://cdn.simpleicons.org/html5/E34F26" alt="HTML5"><span>HTML5</span></div><div class="tech-item"><img loading="lazy" src="https://cdn.simpleicons.org/css3/1572B6" alt="CSS3"><span>CSS3</span></div><div class="tech-item"><img loading="lazy" src="https://cdn.simpleicons.org/javascript/F7DF1E" alt="JavaScript"><span>JavaScript</span></div><div class="tech-item"><img loading="lazy" src="https://cdn.simpleicons.org/typescript/3178C6" alt="TypeScript"><span>TypeScript</span></div><div class="tech-item"><img loading="lazy" src="https://cdn.simpleicons.org/angular/DD0031" alt="Angular"><span>Angular</span></div><div class="tech-item"><img loading="lazy" src="https://cdn.simpleicons.org/nodedotjs/5FA04E" alt="Node.js"><span>Node.js</span></div><div class="tech-item"><img loading="lazy" src="https://cdn.simpleicons.org/express/FFFFFF" alt="Express"><span>Express</span></div><div class="tech-item"><img loading="lazy" src="https://cdn.simpleicons.org/openjdk/FFFFFF" alt="Java"><span>Java</span></div><div class="tech-item"><img loading="lazy" src="https://cdn.simpleicons.org/spring/6DB33F" alt="Spring"><span>Spring</span></div><div class="tech-item"><img loading="lazy" src="https://cdn.simpleicons.org/python/3776AB" alt="Python"><span>Python</span></div><div class="tech-item"><img loading="lazy" src="https://cdn.simpleicons.org/postgresql/4169E1" alt="PostgreSQL"><span>PostgreSQL</span></div><div class="tech-item"><img loading="lazy" src="https://cdn.simpleicons.org/mariadb/C0765A" alt="MariaDB"><span>MariaDB</span></div><div class="tech-item"><img loading="lazy" src="https://cdn.simpleicons.org/docker/2496ED" alt="Docker"><span>Docker</span></div><div class="tech-item"><img loading="lazy" src="https://cdn.simpleicons.org/github/FFFFFF" alt="GitHub"><span>GitHub</span></div><div class="tech-item"><img loading="lazy" src="https://cdn.simpleicons.org/googlecloud/4285F4" alt="Google Cloud"><span>Google Cloud</span></div><div class="tech-item"><img loading="lazy" src="https://cdn.simpleicons.org/cloudflare/F38020" alt="Cloudflare"><span>Cloudflare</span></div><div class="tech-item"><img loading="lazy" src="https://cdn.simpleicons.org/n8n/EA4B71" alt="n8n"><span>n8n</span></div><div class="tech-item"><img loading="lazy" src="https://cdn.simpleicons.org/threedotjs/FFFFFF" alt="Three.js"><span>Three.js</span></div><div class="tech-item"><img loading="lazy" src="https://cdn.simpleicons.org/unity/FFFFFF" alt="Unity"><span>Unity</span></div><div class="tech-item"><img loading="lazy" src="https://cdn.simpleicons.org/figma/F24E1E" alt="Figma"><span>Figma</span></div><div class="tech-item"><img loading="lazy" src="https://cdn.simpleicons.org/powerapps/742774" alt="Power Apps"><span>Power Apps</span></div><div class="tech-item"><img loading="lazy" src="https://cdn.simpleicons.org/powerautomate/0066FF" alt="Power Automate"><span>Power Automate</span></div><div class="tech-item"><img loading="lazy" src="https://cdn.simpleicons.org/microsoftsharepoint/038387" alt="SharePoint"><span>SharePoint</span></div><div class="tech-item"><img loading="lazy" src="https://cdn.simpleicons.org/firebase/FFCA28" alt="Firebase"><span>Firebase</span></div></div>
+      </div>
+    </section>
+
     <section class="section section-line" id="contato">
       <div class="container">
         <div class="cta-panel glass reveal">
           <div>
             <div class="eyebrow">Vamos juntos?</div>
-            <h2 class="headline">Qual problema sua empresa ainda está <em>resolvendo manualmente?</em></h2>
-            <p>Pode ser uma operação lenta, uma oportunidade de mercado mal explorada, um produto que ainda não existe ou uma experiência que precisa ser redesenhada. A conversa começa pelo problema — não por uma lista de serviços.</p>
+            <h2 class="headline">O que está <em>travando</em> seu negócio hoje?</h2>
+            <p>Conte o problema. A solução pode ser estratégia, software, automação, experiência ou produto físico — e a conversa começa por entender o que realmente precisa mudar.</p>
             <div class="hero-actions">
               <a class="btn btn-primary magnetic" href="mailto:contato@thunber.agencia">Conversar sobre o desafio <span class="round">↗</span></a>
               <a class="btn btn-ghost" href="#projetos">Explorar projetos</a>
@@ -704,6 +763,51 @@
       gsap.to('.spiral', {scrollTrigger:{trigger:'#inicio', start:'top top', end:'bottom top', scrub:1}, rotate:55, scale:1.16});
     }
 
+    // Typewriter no hero — preserva texto útil mesmo sem JavaScript
+    const typedEl = $('#typedText');
+    const typedWords = [
+      'sites que convertem.',
+      'automações que escalam.',
+      'sistemas sob medida.',
+      'experiências que marcam.',
+      'protótipos que saem da tela.'
+    ];
+    if(typedEl && !reduceMotion){
+      let wordIndex=0, charIndex=typedWords[0].length, deleting=true;
+      typedEl.textContent=typedWords[0];
+      const typeLoop=()=>{
+        const word=typedWords[wordIndex];
+        if(deleting){
+          charIndex--;
+          typedEl.textContent=word.slice(0, Math.max(charIndex,0));
+          if(charIndex<=0){ deleting=false; wordIndex=(wordIndex+1)%typedWords.length; setTimeout(typeLoop,260); return; }
+          setTimeout(typeLoop,32);
+        }else{
+          const next=typedWords[wordIndex];
+          charIndex++;
+          typedEl.textContent=next.slice(0,charIndex);
+          if(charIndex>=next.length){ deleting=true; setTimeout(typeLoop,1450); return; }
+          setTimeout(typeLoop,58 + Math.random()*32);
+        }
+      };
+      setTimeout(typeLoop,1500);
+    }
+
+
+    // Live project previews: load only near viewport, no WordPress screenshot service.
+    const previewObserver = new IntersectionObserver((entries, obs)=>{
+      entries.forEach(entry=>{
+        if(!entry.isIntersecting) return;
+        const box=entry.target, frame=box.querySelector('iframe');
+        if(frame && !frame.src){
+          frame.addEventListener('load', ()=>box.classList.add('loaded'), {once:true});
+          frame.src=box.dataset.url;
+        }
+        obs.unobserve(box);
+      });
+    }, {rootMargin:'320px 0px'});
+    $$('.live-preview').forEach(el=>previewObserver.observe(el));
+
     // Filter projects
     $$('.filter').forEach(btn=>btn.addEventListener('click', ()=>{
       $$('.filter').forEach(b=>b.classList.remove('active')); btn.classList.add('active');
@@ -712,7 +816,7 @@
     }));
 
     // Active nav by section
-    const sectionIds = ['servicos','projetos','resultados','lab','galeria','contato'];
+    const sectionIds = ['servicos','projetos','resultados','lab','galeria','tecnologias','contato'];
     const navMap = Object.fromEntries(sectionIds.map(id=>[id, $(`.nav-links a[href="#${id}"]`)]));
     const observer = new IntersectionObserver(entries=>{
       entries.forEach(entry=>{ if(entry.isIntersecting){ Object.values(navMap).forEach(el=>el && el.classList.remove('active')); navMap[entry.target.id]?.classList.add('active'); } });
@@ -733,7 +837,7 @@
       'Yalle Tarique': { type:['Site institucional','Serviços','Conversão'], text:'Projeto digital para comunicar solução, credibilidade e facilitar o contato comercial.', url:'https://yalletarique.com.br' },
       'Surplus Contabilidade': { type:['Plataforma','Conteúdo','Negócios'], text:'Estrutura de presença digital e informação com foco em soluções empresariais e especialidades.', url:'https://surpluscontabilidade.com.br' },
       'Poderosa Beleza': { type:['E-commerce','Experiência','Branding'], text:'Projeto de presença digital e comércio eletrônico orientado a produto, navegação e identidade visual.', url:'https://poderosabeleza.com.br' },
-      'Adega Virtual': { type:['E-commerce','Produto','Conversão'], text:'Ambiente voltado à exposição de catálogo, experiência de compra e apresentação dos itens.', url:'https://adegavirtual.com.br' },
+      'Adega Virtual': { type:['E-commerce','Produto','Conversão'], text:'Ambiente voltado à exposição de catálogo, experiência de compra e apresentação dos itens.', url:'https://www.adegavirtual.com/' },
       'Brazilian Games': { type:['Marketplace','Growth','Comunidade'], text:'Projeto voltado ao ecossistema gamer, com foco em produto digital, comunicação, aquisição e experiência de marketplace.', url:'https://braziliangames.com.br' },
       'Dr de Bolso': { type:['Plataforma','Acesso','Saúde'], text:'Plataforma com proposta de acesso unificado e experiência funcional para profissionais e pacientes.', url:'https://drdebolso.vercel.app' }
     };
