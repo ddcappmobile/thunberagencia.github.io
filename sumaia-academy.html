@@ -590,21 +590,52 @@ html[data-theme="dark"] .paper{background:linear-gradient(145deg,#eceae4,#d8d4cc
 <script>
 const CONFIG = {
   // Troque SOMENTE esta URL quando o Cloudflare Tunnel mudar.
-  API_BASE: "https://SEU-TUNNEL.trycloudflare.com",
+  API_BASE: "https://consistently-images-amend-has.trycloudflare.com",
   ENDPOINTS: {
     auth: "/academy/auth",
     catalog: "/academy/catalog",
     progress: "/academy/progress"
   },
-  DEMO_MODE: true,
+  DEMO_MODE: false,
   DEMO_TOKEN: "SUMAIA-DEMO"
 };
 
 const state = {
   user: null,
+  catalog: null,
+  progress: null,
   theme: localStorage.getItem("sumaia-theme") || "light",
   currentView: "home"
 };
+
+async function loadRuntimeConfig() {
+  try {
+    const response = await fetch("./academy-config.json", { cache: "no-store" });
+    if (!response.ok) return;
+    const cfg = await response.json();
+    if (cfg.apiBase) CONFIG.API_BASE = String(cfg.apiBase).replace(/\/$/, "");
+  } catch (_) {}
+}
+
+async function loadStudentData(session) {
+  const headers = { Authorization: "Bearer " + session };
+  try {
+    const [catalogRes, progressRes] = await Promise.all([
+      fetch(CONFIG.API_BASE + CONFIG.ENDPOINTS.catalog, { headers }),
+      fetch(CONFIG.API_BASE + CONFIG.ENDPOINTS.progress, { headers })
+    ]);
+    if (catalogRes.ok) {
+      const data = await catalogRes.json();
+      state.catalog = data.catalog || data;
+    }
+    if (progressRes.ok) {
+      const data = await progressRes.json();
+      state.progress = data.progress || data;
+    }
+  } catch (e) {
+    console.warn("Catálogo/progresso ainda não carregaram:", e);
+  }
+}
 
 document.documentElement.dataset.theme = state.theme;
 document.getElementById("themeBtn").textContent = state.theme === "light" ? "☾" : "☀";
@@ -667,6 +698,7 @@ async function authenticate(token) {
 }
 
 document.getElementById("loginBtn").addEventListener("click",async()=>{
+  await loadRuntimeConfig();
   const token = document.getElementById("tokenInput").value;
   const error = document.getElementById("loginError");
   error.textContent = "";
@@ -675,9 +707,15 @@ document.getElementById("loginBtn").addEventListener("click",async()=>{
     const result = await authenticate(token);
     if(!result.valid){ error.textContent="Código de acesso inválido."; return; }
     state.user = result.user;
-    sessionStorage.setItem("sumaia-session", result.session || "session");
+    const session = result.session || "";
+    sessionStorage.setItem("sumaia-session", session);
+    sessionStorage.setItem("sumaia-user", JSON.stringify(result.user || {}));
+    const displayName = (result.user?.name || "Aluno").split(" ")[0];
+    const homeTitle = document.querySelector("#home .page-title");
+    if (homeTitle) homeTitle.textContent = `Boa noite, ${displayName}. 👋`;
     applyAuthState();
-    toast("Bem-vinda à Sumaia Academy.");
+    await loadStudentData(session);
+    toast("Acesso validado pelo n8n.");
   } catch(e) {
     error.textContent = e.message || "Não foi possível conectar à Academy.";
   }
@@ -689,7 +727,10 @@ document.getElementById("tokenInput").addEventListener("keydown",e=>{
 
 document.getElementById("logoutBtn").addEventListener("click",()=>{
   sessionStorage.removeItem("sumaia-session");
+  sessionStorage.removeItem("sumaia-user");
   state.user=null;
+  state.catalog=null;
+  state.progress=null;
   applyAuthState();
   document.getElementById("tokenInput").value="";
 });
@@ -722,7 +763,20 @@ function applyAuthState() {
   document.getElementById("app").classList.toggle("hidden", !hasSession);
 }
 
-applyAuthState();
+loadRuntimeConfig().finally(() => {
+  const savedUser = sessionStorage.getItem("sumaia-user");
+  if (savedUser) {
+    try {
+      state.user = JSON.parse(savedUser);
+      const displayName = (state.user?.name || "Aluno").split(" ")[0];
+      const homeTitle = document.querySelector("#home .page-title");
+      if (homeTitle) homeTitle.textContent = `Boa noite, ${displayName}. 👋`;
+    } catch (_) {}
+  }
+  applyAuthState();
+  const existingSession = sessionStorage.getItem("sumaia-session");
+  if (existingSession) loadStudentData(existingSession);
+});
 </script>
 </body>
 </html>
