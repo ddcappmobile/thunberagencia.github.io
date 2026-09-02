@@ -417,9 +417,9 @@ GET  /academy/admin/health</div>
 
 <script>
 const CONFIG = {
-  DEMO_MODE: true,
+  DEMO_MODE: false,
   ADMIN_DEMO_TOKEN: "ADMIN-DEMO",
-  API_BASE: "https://SEU-TUNNEL.trycloudflare.com",
+  API_BASE: "https://consistently-images-amend-has.trycloudflare.com",
   ENDPOINTS: {
     students: "/academy/admin/students",
     tokenGenerate: "/academy/admin/token/generate",
@@ -434,11 +434,7 @@ const CONFIG = {
 };
 
 const state = {
-  students: [
-    {id:"stu_001",name:"Daniela Rodrigues",email:"daniela@email.com",token:"SUMAIA-7K92-KL8P",role:"student",access:["primeiros-passos"],active:true},
-    {id:"stu_002",name:"Marina Souza",email:"marina@email.com",token:"SUMAIA-X5LA-18QD",role:"student",access:["primeiros-passos"],active:true},
-    {id:"stu_003",name:"Rafael Lima",email:"rafael@email.com",token:"SUMAIA-2QAZ-77MM",role:"student",access:["primeiros-passos","acordes-essenciais"],active:true}
-  ],
+  students: [],
   courses: [
     {id:"primeiros-passos",title:"Primeiros Passos no Violão",level:"Iniciante",lessons:8,status:"Publicado",folder:"D:\\\\sumaia-academy\\\\cursos\\\\primeiros-passos"},
     {id:"acordes-essenciais",title:"Acordes Essenciais",level:"Iniciante",lessons:6,status:"Rascunho",folder:"D:\\\\sumaia-academy\\\\cursos\\\\acordes-essenciais"}
@@ -447,6 +443,37 @@ const state = {
 
 const $ = s => document.querySelector(s);
 const $$ = s => [...document.querySelectorAll(s)];
+
+async function loadRuntimeConfig() {
+  try {
+    const response = await fetch("./academy-config.json", { cache: "no-store" });
+    if (response.ok) {
+      const cfg = await response.json();
+      if (cfg.apiBase) CONFIG.API_BASE = String(cfg.apiBase).replace(/\/$/, "");
+    }
+  } catch (_) {}
+  if ($("#apiBase")) $("#apiBase").value = CONFIG.API_BASE;
+}
+
+function getAdminToken() {
+  return sessionStorage.getItem("sumaia-admin-token") || "";
+}
+
+async function adminFetch(endpoint, options = {}) {
+  await loadRuntimeConfig();
+  const headers = {
+    "Content-Type": "application/json",
+    "X-Admin-Token": getAdminToken(),
+    ...(options.headers || {})
+  };
+  const response = await fetch(CONFIG.API_BASE + endpoint, { ...options, headers });
+  let data = {};
+  try { data = await response.json(); } catch (_) {}
+  if (!response.ok || data.ok === false) {
+    throw new Error(data.error || `HTTP ${response.status}`);
+  }
+  return data;
+}
 
 function toast(msg){
   const el=$("#toast"); el.textContent=msg; el.classList.add("show");
@@ -497,16 +524,36 @@ $$("[data-page]").forEach(b=>b.onclick=()=>{
 });
 $("#openMenu").onclick=()=>$("#sidebar").classList.toggle("open");
 
-$("#adminLogin").onclick=()=>{
+$("#adminLogin").onclick=async()=>{
+  await loadRuntimeConfig();
   const t=$("#adminToken").value.trim();
-  if(CONFIG.DEMO_MODE && t===CONFIG.ADMIN_DEMO_TOKEN){
-    sessionStorage.setItem("sumaia-admin","demo");
-    $("#login").classList.add("hidden");$("#app").classList.remove("hidden");$("#adminError").textContent="";
-    renderStudents();renderCourses();toast("Admin conectado.");
-  }else $("#adminError").textContent="Token administrativo inválido.";
+  $("#adminError").textContent="";
+  if(!t){$("#adminError").textContent="Digite o token administrativo.";return;}
+  try{
+    const r=await fetch(CONFIG.API_BASE+CONFIG.ENDPOINTS.health,{
+      headers:{"X-Admin-Token":t}
+    });
+    const data=await r.json().catch(()=>({}));
+    if(!r.ok || data.ok===false) throw new Error(data.error||"Acesso recusado");
+    sessionStorage.setItem("sumaia-admin","1");
+    sessionStorage.setItem("sumaia-admin-token",t);
+    $("#apiAdminToken").value=t;
+    $("#login").classList.add("hidden");
+    $("#app").classList.remove("hidden");
+    renderStudents();renderCourses();
+    toast("Admin validado pelo n8n.");
+  }catch(e){
+    $("#adminError").textContent="Não foi possível validar: "+e.message;
+  }
 };
 $("#adminToken").addEventListener("keydown",e=>{if(e.key==="Enter")$("#adminLogin").click()});
-$("#logoutBtn").onclick=()=>{sessionStorage.removeItem("sumaia-admin");$("#app").classList.add("hidden");$("#login").classList.remove("hidden");$("#adminToken").value=""};
+$("#logoutBtn").onclick=()=>{
+  sessionStorage.removeItem("sumaia-admin");
+  sessionStorage.removeItem("sumaia-admin-token");
+  $("#app").classList.add("hidden");
+  $("#login").classList.remove("hidden");
+  $("#adminToken").value="";
+};
 
 $("#themeBtn").onclick=()=>{const n=document.documentElement.dataset.theme==="light"?"dark":"light";document.documentElement.dataset.theme=n;localStorage.setItem("sumaia-admin-theme",n);$("#themeBtn").textContent=n==="light"?"☾ Tema":"☀ Tema"};
 document.documentElement.dataset.theme=localStorage.getItem("sumaia-admin-theme")||"light";
@@ -517,34 +564,117 @@ $("#newCourse").onclick=()=>openModal("courseModal");
 $("#createStudent").onclick=async()=>{
   const name=$("#studentName").value.trim(),email=$("#studentEmail").value.trim();
   if(!name||!email){toast("Preencha nome e e-mail.");return}
-  const s={id:"stu_"+Date.now(),name,email,token:token(),role:$("#studentRole").value,access:$("#studentAccess").value.split(",").map(x=>x.trim()).filter(Boolean),active:true};
-  state.students.unshift(s);renderStudents();closeModal("studentModal");
-  $("#studentName").value="";$("#studentEmail").value="";
-  try{await navigator.clipboard.writeText(s.token);toast("Aluno criado. Token copiado.");}catch{toast("Aluno criado: "+s.token);}
+  const access=$("#studentAccess").value.split(",").map(x=>x.trim()).filter(Boolean);
+  const expiryDays=Number($("#studentExpiry").value||0);
+  const expiresAt=expiryDays ? new Date(Date.now()+expiryDays*86400000).toISOString() : null;
+  try{
+    const data=await adminFetch(CONFIG.ENDPOINTS.students,{
+      method:"POST",
+      body:JSON.stringify({
+        name,email,
+        role:$("#studentRole").value,
+        access,
+        expiresAt
+      })
+    });
+    const s={...data.user,token:data.token,active:true};
+    state.students.unshift(s);
+    renderStudents();
+    closeModal("studentModal");
+    $("#studentName").value="";
+    $("#studentEmail").value="";
+    try{
+      await navigator.clipboard.writeText(data.token);
+      toast("Aluno criado no n8n. Token copiado.");
+    }catch{
+      toast("Aluno criado: "+data.token);
+    }
+  }catch(e){
+    toast("Erro ao criar aluno: "+e.message);
+  }
 };
 
-$("#createCourse").onclick=()=>{
+$("#createCourse").onclick=async()=>{
   const title=$("#courseTitle").value.trim(),id=$("#courseSlug").value.trim();
   if(!title||!id){toast("Informe título e slug.");return}
-  state.courses.unshift({id,title,level:$("#courseLevel").value,lessons:0,status:$("#courseStatus").value,folder:$("#courseFolder").value.trim()});
-  renderCourses();closeModal("courseModal");toast("Curso criado.");
+  try{
+    const data=await adminFetch(CONFIG.ENDPOINTS.course,{
+      method:"POST",
+      body:JSON.stringify({
+        id,
+        title,
+        level:$("#courseLevel").value,
+        status:$("#courseStatus").value==="Publicado"?"published":"draft",
+        description:$("#courseDescription").value.trim()
+      })
+    });
+    state.courses.unshift({
+      id:data.course.id,
+      title:data.course.title,
+      level:data.course.level||"Iniciante",
+      lessons:0,
+      status:data.course.status==="published"?"Publicado":"Rascunho",
+      folder:$("#courseFolder").value.trim()
+    });
+    renderCourses();
+    closeModal("courseModal");
+    toast("Curso criado no n8n.");
+  }catch(e){
+    toast("Erro ao criar curso: "+e.message);
+  }
 };
 
-$("#saveLesson").onclick=()=>toast("Aula salva no catálogo demo.");
+$("#saveLesson").onclick=async()=>{
+  try{
+    await adminFetch(CONFIG.ENDPOINTS.lesson,{
+      method:"POST",
+      body:JSON.stringify({
+        courseId:"primeiros-passos",
+        id:"05-as-6-cordas",
+        moduleId:"fundamentos",
+        order:5,
+        title:"As 6 cordas",
+        type:"video",
+        duration:738,
+        description:"Nesta aula o aluno aprende a ordem e o nome das seis cordas do violão.",
+        media:"courses/primeiros-passos/05-as-6-cordas/video.mp4",
+        materials:["courses/primeiros-passos/05-as-6-cordas/material.pdf"],
+        published:true
+      })
+    });
+    toast("Aula salva no n8n.");
+  }catch(e){toast("Erro: "+e.message);}
+};
 $("#newLesson").onclick=()=>toast("Editor de nova aula será conectado ao endpoint /lesson.");
 $("#newMaterial").onclick=()=>toast("Cadastro de material preparado para o n8n.");
 $("#saveSettings").onclick=()=>toast("Configurações salvas localmente no MVP.");
 
 $("#testApi").onclick=async()=>{
-  CONFIG.API_BASE=$("#apiBase").value.trim();
-  if(CONFIG.DEMO_MODE){$("#apiResult").textContent="✓ Modo demo: contrato de API configurado.";toast("Conexão simulada com sucesso.");return}
+  CONFIG.API_BASE=$("#apiBase").value.trim().replace(/\/$/,"");
+  const t=$("#apiAdminToken").value.trim() || getAdminToken();
   try{
-    const r=await fetch(CONFIG.API_BASE+CONFIG.ENDPOINTS.health,{headers:{"X-Admin-Token":$("#apiAdminToken").value}});
-    $("#apiResult").textContent=r.ok?"✓ Backend disponível.":"Backend respondeu com erro.";
-  }catch(e){$("#apiResult").textContent="Falha: "+e.message}
+    const r=await fetch(CONFIG.API_BASE+CONFIG.ENDPOINTS.health,{
+      headers:{"X-Admin-Token":t}
+    });
+    const data=await r.json().catch(()=>({}));
+    $("#apiResult").textContent=(r.ok&&data.ok!==false)?"✓ Backend disponível.":"Backend recusou a autenticação.";
+  }catch(e){
+    $("#apiResult").textContent="Falha: "+e.message;
+  }
 };
-$("#scanFolder").onclick=()=>toast("Solicitação de scan preparada para /academy/admin/sync.");
-$("#syncNow").onclick=()=>toast("Catálogo sincronizado no modo demo.");
+
+$("#scanFolder").onclick=async()=>{
+  try{
+    await adminFetch(CONFIG.ENDPOINTS.sync,{method:"POST",body:"{}"});
+    toast("Pasta lida e catálogo reconstruído.");
+  }catch(e){toast("Erro no scan: "+e.message);}
+};
+$("#syncNow").onclick=async()=>{
+  try{
+    await adminFetch(CONFIG.ENDPOINTS.sync,{method:"POST",body:"{}"});
+    toast("Catálogo sincronizado com o n8n.");
+  }catch(e){toast("Erro na sincronização: "+e.message);}
+};
 
 $("#exportBtn").onclick=()=>{
   const payload={exportedAt:new Date().toISOString(),students:state.students,courses:state.courses,config:{contentRoot:$("#contentRoot").value,apiBase:$("#apiBase").value}};
@@ -553,9 +683,15 @@ $("#exportBtn").onclick=()=>{
   toast("JSON exportado.");
 };
 
-if(sessionStorage.getItem("sumaia-admin")){
-  $("#login").classList.add("hidden");$("#app").classList.remove("hidden");renderStudents();renderCourses();
-}
+loadRuntimeConfig().finally(()=>{
+  if(sessionStorage.getItem("sumaia-admin") && sessionStorage.getItem("sumaia-admin-token")){
+    $("#login").classList.add("hidden");
+    $("#app").classList.remove("hidden");
+    $("#apiAdminToken").value=getAdminToken();
+    renderStudents();
+    renderCourses();
+  }
+});
 </script>
 </body>
 </html>
