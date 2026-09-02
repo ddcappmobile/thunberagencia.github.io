@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#f8f6f2">
+<title>Sumaia Academy — Admin</title>
+<meta name="description" content="Painel administrativo da Sumaia Academy para alunos, tokens, cursos, aulas, materiais e sincronização com n8n.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f7f6f2;
+  --panel:#fff;
+  --panel2:#fbfaf7;
+  --text:#171717;
+  --muted:#6b7178;
+  --line:#e1e2de;
+  --navy:#123b72;
+  --navy2:#0a2a54;
+  --orange:#f47a2a;
+  --lime:#cfe700;
+  --green:#2f8c59;
+  --red:#b83a3a;
+  --shadow:0 18px 60px rgba(20,34,49,.08);
+  --radius:20px;
+}
+html[data-theme="dark"]{
+  --bg:#0b0e12;
+  --panel:#11151a;
+  --panel2:#0e1217;
+  --text:#f5f6f7;
+  --muted:#9aa2aa;
+  --line:#252c34;
+  --navy:#82b7f7;
+  --navy2:#bdd9ff;
+  --orange:#ff9147;
+  --lime:#d7ef1c;
+  --green:#72c894;
+  --red:#ff7f7f;
+  --shadow:0 22px 70px rgba(0,0,0,.35);
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:"DM Sans",system-ui,sans-serif;background:var(--bg);color:var(--text)}
+button,input,select,textarea{font:inherit}
+button{cursor:pointer}
+.hidden{display:none!important}
+.app{min-height:100vh}
+.shell{display:grid;grid-template-columns:260px 1fr;min-height:100vh}
+.sidebar{
+  position:sticky;top:0;height:100vh;padding:22px 16px;border-right:1px solid var(--line);
+  background:var(--panel);display:flex;flex-direction:column;gap:18px;z-index:20
+}
+.brand strong{display:block;font:700 1.5rem "Playfair Display";color:var(--navy2);letter-spacing:.03em}
+.brand small{font-size:.53rem;letter-spacing:.46em;color:var(--orange);font-weight:700}
+.admin-badge{display:inline-block;margin-top:8px;padding:6px 8px;border-radius:999px;background:color-mix(in srgb,var(--orange) 12%,var(--panel));color:var(--orange);font-size:.68rem;font-weight:700}
+.menu{display:grid;gap:6px}
+.menu button{
+  border:0;background:transparent;color:var(--muted);text-align:left;padding:12px 13px;border-radius:12px;
+  display:flex;align-items:center;gap:10px
+}
+.menu button.active,.menu button:hover{background:color-mix(in srgb,var(--navy) 9%,var(--panel));color:var(--navy2)}
+.side-bottom{margin-top:auto;display:grid;gap:10px}
+.mini{font-size:.75rem;color:var(--muted)}
+.main{min-width:0}
+.topbar{
+  position:sticky;top:0;z-index:15;height:72px;border-bottom:1px solid var(--line);
+  background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(16px);
+  display:flex;align-items:center;justify-content:space-between;padding:0 28px
+}
+.top-actions{display:flex;align-items:center;gap:10px}
+.btn{
+  border:1px solid var(--line);background:var(--panel);color:var(--text);padding:11px 14px;border-radius:12px;
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;font-weight:600
+}
+.btn:hover{transform:translateY(-1px)}
+.btn.primary{background:var(--navy2);color:white;border-color:var(--navy2)}
+.btn.orange{background:var(--orange);color:white;border-color:var(--orange)}
+.btn.danger{color:var(--red)}
+.icon-btn{width:42px;height:42px;padding:0}
+.page{display:none;padding:28px;animation:in .25s ease}
+.page.active{display:block}
+@keyframes in{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
+.page-head{display:flex;justify-content:space-between;gap:20px;align-items:flex-end;margin-bottom:22px}
+.page-head h1{font:700 2.2rem/1 "Playfair Display";margin:0;color:var(--navy2)}
+.page-head p{margin:6px 0 0;color:var(--muted)}
+.grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.stat{padding:20px;border:1px solid var(--line);border-radius:var(--radius);background:var(--panel);box-shadow:var(--shadow)}
+.stat span{color:var(--muted);font-size:.78rem}
+.stat strong{display:block;font-size:2rem;color:var(--navy2);margin-top:8px}
+.layout-2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:18px}
+.card{border:1px solid var(--line);border-radius:var(--radius);background:var(--panel);padding:20px;box-shadow:var(--shadow)}
+.card h2{font-size:1.05rem;margin:0 0 15px}
+.table-wrap{overflow:auto;border:1px solid var(--line);border-radius:16px;background:var(--panel)}
+table{width:100%;border-collapse:collapse;min-width:760px}
+th,td{text-align:left;padding:13px 14px;border-bottom:1px solid var(--line);font-size:.83rem;vertical-align:middle}
+th{color:var(--muted);font-weight:600;background:var(--panel2);position:sticky;top:0}
+tr:last-child td{border-bottom:0}
+.tag{display:inline-flex;padding:5px 8px;border-radius:999px;font-size:.69rem;font-weight:700;background:color-mix(in srgb,var(--navy) 10%,var(--panel));color:var(--navy2)}
+.tag.green{background:color-mix(in srgb,var(--green) 12%,var(--panel));color:var(--green)}
+.tag.red{background:color-mix(in srgb,var(--red) 10%,var(--panel));color:var(--red)}
+.token{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.76rem}
+.row-actions{display:flex;gap:6px;flex-wrap:wrap}
+.small-btn{border:1px solid var(--line);background:var(--panel);padding:7px 9px;border-radius:9px;color:var(--text);font-size:.73rem}
+.small-btn:hover{border-color:var(--navy)}
+.form-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+.field{display:grid;gap:7px}
+.field.full{grid-column:1/-1}
+label{font-size:.76rem;color:var(--muted);font-weight:600}
+input,select,textarea{
+  width:100%;border:1px solid var(--line);background:var(--panel2);color:var(--text);border-radius:11px;padding:12px;outline:none
+}
+input:focus,select:focus,textarea:focus{border-color:color-mix(in srgb,var(--navy) 60%,var(--line));box-shadow:0 0 0 3px color-mix(in srgb,var(--navy) 9%,transparent)}
+textarea{min-height:100px;resize:vertical}
+.course-list{display:grid;gap:12px}
+.course{
+  border:1px solid var(--line);border-radius:16px;background:var(--panel);padding:16px;
+  display:grid;grid-template-columns:72px 1fr auto;gap:14px;align-items:center
+}
+.course-cover{width:72px;height:72px;border-radius:14px;background:linear-gradient(135deg,#b67847,#e8c09a);display:grid;place-items:center;color:white;font-size:1.7rem}
+.course h3{margin:0 0 5px}
+.course p{margin:0;color:var(--muted);font-size:.78rem}
+.lesson-editor{display:grid;grid-template-columns:300px 1fr;gap:16px}
+.lesson-tree{border:1px solid var(--line);border-radius:16px;background:var(--panel);padding:14px;max-height:620px;overflow:auto}
+.tree-item{padding:10px;border-radius:10px;font-size:.82rem;display:flex;justify-content:space-between;gap:8px}
+.tree-item:hover,.tree-item.active{background:color-mix(in srgb,var(--navy) 8%,var(--panel));color:var(--navy2)}
+.tree-module{font-weight:700;margin-top:10px}
+.sync-box{
+  border:1px solid var(--line);border-radius:18px;background:var(--panel);padding:20px;display:grid;gap:14px
+}
+.status-row{display:flex;justify-content:space-between;gap:18px;align-items:center;padding:12px 0;border-bottom:1px solid var(--line)}
+.status-row:last-child{border-bottom:0}
+.dot{width:9px;height:9px;border-radius:50%;background:var(--green);display:inline-block;margin-right:7px}
+.code{
+  font-family:ui-monospace,SFMono-Regular,Menlo,monospace;background:var(--panel2);border:1px solid var(--line);
+  border-radius:12px;padding:12px;white-space:pre-wrap;font-size:.76rem;overflow:auto
+}
+.modal{
+  position:fixed;inset:0;background:rgba(0,0,0,.55);backdrop-filter:blur(8px);z-index:50;display:none;align-items:center;justify-content:center;padding:18px
+}
+.modal.open{display:flex}
+.modal-card{width:min(720px,100%);max-height:88vh;overflow:auto;background:var(--panel);border:1px solid var(--line);border-radius:22px;padding:22px;box-shadow:0 30px 120px rgba(0,0,0,.35)}
+.modal-head{display:flex;justify-content:space-between;align-items:center;gap:15px;margin-bottom:18px}
+.modal-head h2{margin:0;color:var(--navy2)}
+.close{width:40px;height:40px;border:1px solid var(--line);border-radius:50%;background:var(--panel)}
+.toast{position:fixed;right:20px;bottom:20px;z-index:70;background:var(--navy2);color:white;padding:12px 16px;border-radius:12px;opacity:0;transform:translateY(14px);transition:.2s;pointer-events:none}
+.toast.show{opacity:1;transform:none}
+.login{
+  min-height:100vh;display:grid;grid-template-columns:42% 58%;background:var(--bg)
+}
+.login-art{background:linear-gradient(135deg,#d8b997,#815636);position:relative;overflow:hidden}
+.login-art::after{content:"♫";font-size:23rem;color:rgba(255,255,255,.35);position:absolute;left:50%;top:50%;transform:translate(-50%,-50%) rotate(-12deg)}
+.login-pane{display:grid;place-items:center;padding:34px}
+.login-box{width:min(470px,100%)}
+.login-box h1{font:700 3.5rem/1 "Playfair Display";color:var(--navy2);margin:0}
+.login-box p{color:var(--muted);line-height:1.7}
+.login-box .brand{margin-bottom:42px}
+.login-error{color:var(--red);font-size:.78rem;margin-top:10px}
+.mobile-open{display:none}
+@media(max-width:1100px){
+  .shell{grid-template-columns:210px 1fr}
+  .grid-4{grid-template-columns:repeat(2,1fr)}
+  .layout-2{grid-template-columns:1fr}
+  .lesson-editor{grid-template-columns:1fr}
+}
+@media(max-width:760px){
+  .shell{grid-template-columns:1fr}
+  .sidebar{position:fixed;left:-290px;top:0;width:270px;z-index:60;transition:.25s;box-shadow:var(--shadow)}
+  .sidebar.open{left:0}
+  .mobile-open{display:inline-flex}
+  .topbar{padding:0 14px}
+  .page{padding:20px 14px 90px}
+  .grid-4,.form-grid{grid-template-columns:1fr}
+  .field.full{grid-column:auto}
+  .page-head{align-items:flex-start;flex-direction:column}
+  .course{grid-template-columns:58px 1fr}
+  .course-cover{width:58px;height:58px}
+  .course>.row-actions{grid-column:1/-1}
+  .login{grid-template-columns:1fr}
+  .login-art{display:none}
+  .login-pane{padding:24px}
+}
+</style>
+</head>
+<body>
+<div id="login" class="login">
+  <div class="login-art"></div>
+  <div class="login-pane">
+    <div class="login-box">
+      <div class="brand"><strong>SUMAIA</strong><small>ACADEMY ADMIN</small></div>
+      <h1>Painel de gestão</h1>
+      <p>Cadastre alunos, gere acessos, organize cursos e sincronize o catálogo com o n8n.</p>
+      <div class="field">
+        <label>Token administrativo</label>
+        <input id="adminToken" placeholder="Digite seu token de administrador">
+      </div>
+      <button class="btn primary" style="width:100%;margin-top:12px" id="adminLogin">ENTRAR →</button>
+      <div class="login-error" id="adminError"></div>
+      <p class="mini">Modo demo: use <span class="token">ADMIN-DEMO</span>.</p>
+    </div>
+  </div>
+</div>
+
+<div id="app" class="app hidden">
+<div class="shell">
+  <aside class="sidebar" id="sidebar">
+    <div>
+      <div class="brand"><strong>SUMAIA</strong><small>ACADEMY</small></div>
+      <span class="admin-badge">ADMIN</span>
+    </div>
+    <nav class="menu">
+      <button class="active" data-page="dashboard">◫ Dashboard</button>
+      <button data-page="students">◎ Alunos & Tokens</button>
+      <button data-page="courses">▤ Cursos</button>
+      <button data-page="content">▶ Conteúdos</button>
+      <button data-page="materials">▧ Materiais</button>
+      <button data-page="sync">↻ n8n & Sincronização</button>
+      <button data-page="settings">⚙ Configurações</button>
+    </nav>
+    <div class="side-bottom">
+      <div class="mini">Sumaia Academy Admin<br>White-label LMS Core</div>
+      <button class="btn" id="themeBtn">☾ Tema</button>
+      <button class="btn danger" id="logoutBtn">Sair</button>
+    </div>
+  </aside>
+
+  <section class="main">
+    <header class="topbar">
+      <div style="display:flex;align-items:center;gap:10px">
+        <button class="btn icon-btn mobile-open" id="openMenu">☰</button>
+        <div><b id="topTitle">Dashboard</b><div class="mini">Gestão da Sumaia Academy</div></div>
+      </div>
+      <div class="top-actions">
+        <button class="btn" id="exportBtn">Exportar JSON</button>
+        <button class="btn primary" id="quickStudent">+ Novo aluno</button>
+      </div>
+    </header>
+
+    <main>
+      <section id="dashboard" class="page active">
+        <div class="page-head"><div><h1>Dashboard</h1><p>Visão rápida da operação.</p></div><button class="btn orange" id="syncNow">↻ Sincronizar agora</button></div>
+        <div class="grid-4">
+          <div class="stat"><span>Alunos ativos</span><strong id="statStudents">3</strong></div>
+          <div class="stat"><span>Tokens válidos</span><strong id="statTokens">3</strong></div>
+          <div class="stat"><span>Cursos publicados</span><strong id="statCourses">2</strong></div>
+          <div class="stat"><span>Aulas cadastradas</span><strong id="statLessons">8</strong></div>
+        </div>
+        <div class="layout-2">
+          <div class="card">
+            <h2>Atividade recente</h2>
+            <div class="status-row"><span>Daniela iniciou “As 6 cordas”</span><span class="tag green">agora</span></div>
+            <div class="status-row"><span>Novo material cadastrado</span><span class="tag">há 18 min</span></div>
+            <div class="status-row"><span>Catálogo sincronizado</span><span class="tag green">OK</span></div>
+          </div>
+          <div class="card">
+            <h2>Status da infraestrutura</h2>
+            <div class="status-row"><span><i class="dot"></i>Frontend GitHub Pages</span><span class="tag green">online</span></div>
+            <div class="status-row"><span><i class="dot"></i>n8n</span><span class="tag green">demo</span></div>
+            <div class="status-row"><span><i class="dot"></i>Media Gateway</span><span class="tag">aguardando</span></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="students" class="page">
+        <div class="page-head">
+          <div><h1>Alunos & Tokens</h1><p>Cadastre alunos, gere acesso e controle permissões.</p></div>
+          <button class="btn primary" id="newStudent">+ Cadastrar aluno</button>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Aluno</th><th>E-mail</th><th>Token</th><th>Acesso</th><th>Status</th><th>Ações</th></tr></thead>
+            <tbody id="studentsTable"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="courses" class="page">
+        <div class="page-head">
+          <div><h1>Cursos</h1><p>Organize trilhas, cursos e estrutura pedagógica.</p></div>
+          <button class="btn primary" id="newCourse">+ Novo curso</button>
+        </div>
+        <div class="course-list" id="courseList"></div>
+      </section>
+
+      <section id="content" class="page">
+        <div class="page-head">
+          <div><h1>Conteúdos</h1><p>Módulos, aulas, vídeos, áudios e exercícios.</p></div>
+          <button class="btn primary" id="newLesson">+ Nova aula</button>
+        </div>
+        <div class="lesson-editor">
+          <aside class="lesson-tree">
+            <b>Primeiros Passos no Violão</b>
+            <div class="tree-module">Módulo 01 · Fundamentos</div>
+            <div class="tree-item">01. Introdução <span>✓</span></div>
+            <div class="tree-item">02. Conhecendo o violão <span>✓</span></div>
+            <div class="tree-item">03. Mãos e dedos <span>✓</span></div>
+            <div class="tree-item">04. Como segurar <span>✓</span></div>
+            <div class="tree-item active">05. As 6 cordas <span>▶</span></div>
+            <div class="tree-item">06. Primeiro acorde <span>○</span></div>
+            <div class="tree-item">07. Ritmo básico <span>○</span></div>
+            <div class="tree-item">08. Primeira música <span>○</span></div>
+          </aside>
+          <div class="card">
+            <h2>Editor da aula</h2>
+            <div class="form-grid">
+              <div class="field"><label>Título</label><input value="As 6 cordas"></div>
+              <div class="field"><label>Ordem</label><input type="number" value="5"></div>
+              <div class="field"><label>Tipo</label><select><option>Vídeo</option><option>Áudio</option><option>Texto</option><option>Exercício</option></select></div>
+              <div class="field"><label>Duração</label><input value="12:18"></div>
+              <div class="field full"><label>Descrição</label><textarea>Nesta aula o aluno aprende a ordem e o nome das seis cordas do violão.</textarea></div>
+              <div class="field full"><label>Caminho do vídeo na pasta local</label><input value="D:\\sumaia-academy\\cursos\\primeiros-passos\\05-as-6-cordas\\video.mp4"></div>
+              <div class="field full"><label>Material complementar</label><input value="D:\\sumaia-academy\\cursos\\primeiros-passos\\05-as-6-cordas\\material.pdf"></div>
+            </div>
+            <div style="display:flex;justify-content:flex-end;gap:10px;margin-top:16px"><button class="btn">Salvar rascunho</button><button class="btn primary" id="saveLesson">Salvar aula</button></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="materials" class="page">
+        <div class="page-head">
+          <div><h1>Materiais</h1><p>PDFs, apostilas, infográficos, cifras e downloads.</p></div>
+          <button class="btn primary" id="newMaterial">+ Novo material</button>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Material</th><th>Tipo</th><th>Curso</th><th>Caminho local</th><th>Visibilidade</th><th>Ações</th></tr></thead>
+            <tbody>
+              <tr><td>Primeiros passos no violão</td><td><span class="tag">PDF</span></td><td>Primeiros Passos</td><td class="token">...\materiais\primeiros-passos.pdf</td><td><span class="tag green">Publicado</span></td><td><button class="small-btn">Editar</button></td></tr>
+              <tr><td>Conheça o violão</td><td><span class="tag">PDF</span></td><td>Primeiros Passos</td><td class="token">...\materiais\conheca-o-violao.pdf</td><td><span class="tag green">Publicado</span></td><td><button class="small-btn">Editar</button></td></tr>
+              <tr><td>Mãos e dedos</td><td><span class="tag">PDF</span></td><td>Primeiros Passos</td><td class="token">...\materiais\maos-e-dedos.pdf</td><td><span class="tag green">Publicado</span></td><td><button class="small-btn">Editar</button></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="sync" class="page">
+        <div class="page-head"><div><h1>n8n & Sincronização</h1><p>Conecte o painel ao backend e à pasta local.</p></div></div>
+        <div class="layout-2">
+          <div class="sync-box">
+            <h2 style="margin:0">Endpoints</h2>
+            <div class="field"><label>API Base / Tunnel</label><input id="apiBase" value="https://SEU-TUNNEL.trycloudflare.com"></div>
+            <div class="field"><label>Admin token</label><input id="apiAdminToken" value="ADMIN-DEMO"></div>
+            <button class="btn primary" id="testApi">Testar conexão</button>
+            <div id="apiResult" class="mini">Modo demo ativo.</div>
+          </div>
+          <div class="sync-box">
+            <h2 style="margin:0">Pasta de conteúdo</h2>
+            <div class="field"><label>Root local</label><input id="contentRoot" value="D:\\sumaia-academy"></div>
+            <div class="field"><label>Pasta de cursos</label><input value="D:\\sumaia-academy\\cursos"></div>
+            <div class="field"><label>Pasta de materiais</label><input value="D:\\sumaia-academy\\materiais"></div>
+            <button class="btn" id="scanFolder">Solicitar scan ao n8n</button>
+          </div>
+        </div>
+        <div class="card" style="margin-top:16px">
+          <h2>Contrato esperado da API</h2>
+          <div class="code">POST /academy/admin/students
+POST /academy/admin/token/generate
+POST /academy/admin/token/revoke
+GET  /academy/admin/catalog
+POST /academy/admin/course
+POST /academy/admin/lesson
+POST /academy/admin/material
+POST /academy/admin/sync
+GET  /academy/admin/health</div>
+        </div>
+      </section>
+
+      <section id="settings" class="page">
+        <div class="page-head"><div><h1>Configurações</h1><p>Parâmetros gerais da Academy.</p></div></div>
+        <div class="card">
+          <div class="form-grid">
+            <div class="field"><label>Nome da plataforma</label><input value="Sumaia Academy"></div>
+            <div class="field"><label>Domínio público</label><input value="https://seuusuario.github.io/sumaia-academy/"></div>
+            <div class="field"><label>Validade padrão do token</label><select><option>Sem expiração</option><option>30 dias</option><option>90 dias</option><option>1 ano</option></select></div>
+            <div class="field"><label>Perfil padrão</label><select><option>student</option><option>partner</option><option>guest</option></select></div>
+            <div class="field full"><label>Cursos liberados por padrão</label><input value="primeiros-passos"></div>
+          </div>
+          <div style="display:flex;justify-content:flex-end;margin-top:16px"><button class="btn primary" id="saveSettings">Salvar configurações</button></div>
+        </div>
+      </section>
+    </main>
+  </section>
+</div>
+</div>
+
+<div class="modal" id="studentModal">
+  <div class="modal-card">
+    <div class="modal-head"><h2>Novo aluno</h2><button class="close" data-close="studentModal">×</button></div>
+    <div class="form-grid">
+      <div class="field"><label>Nome</label><input id="studentName" placeholder="Nome completo"></div>
+      <div class="field"><label>E-mail</label><input id="studentEmail" type="email" placeholder="email@exemplo.com"></div>
+      <div class="field"><label>Perfil</label><select id="studentRole"><option value="student">Aluno</option><option value="partner">Parceiro</option><option value="guest">Convidado</option></select></div>
+      <div class="field"><label>Validade</label><select id="studentExpiry"><option value="">Sem expiração</option><option value="30">30 dias</option><option value="90">90 dias</option><option value="365">1 ano</option></select></div>
+      <div class="field full"><label>Cursos liberados</label><input id="studentAccess" value="primeiros-passos" placeholder="course-id, outro-course-id"></div>
+    </div>
+    <div style="display:flex;justify-content:flex-end;gap:10px;margin-top:18px"><button class="btn" data-close="studentModal">Cancelar</button><button class="btn primary" id="createStudent">Criar aluno e gerar token</button></div>
+  </div>
+</div>
+
+<div class="modal" id="courseModal">
+  <div class="modal-card">
+    <div class="modal-head"><h2>Novo curso</h2><button class="close" data-close="courseModal">×</button></div>
+    <div class="form-grid">
+      <div class="field"><label>Título</label><input id="courseTitle" placeholder="Ex.: Acordes Essenciais"></div>
+      <div class="field"><label>ID / slug</label><input id="courseSlug" placeholder="acordes-essenciais"></div>
+      <div class="field"><label>Nível</label><select id="courseLevel"><option>Iniciante</option><option>Intermediário</option><option>Avançado</option></select></div>
+      <div class="field"><label>Status</label><select id="courseStatus"><option>Rascunho</option><option>Publicado</option></select></div>
+      <div class="field full"><label>Descrição</label><textarea id="courseDescription"></textarea></div>
+      <div class="field full"><label>Pasta local</label><input id="courseFolder" placeholder="D:\\sumaia-academy\\cursos\\acordes-essenciais"></div>
+    </div>
+    <div style="display:flex;justify-content:flex-end;gap:10px;margin-top:18px"><button class="btn" data-close="courseModal">Cancelar</button><button class="btn primary" id="createCourse">Criar curso</button></div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const CONFIG = {
+  DEMO_MODE: true,
+  ADMIN_DEMO_TOKEN: "ADMIN-DEMO",
+  API_BASE: "https://SEU-TUNNEL.trycloudflare.com",
+  ENDPOINTS: {
+    students: "/academy/admin/students",
+    tokenGenerate: "/academy/admin/token/generate",
+    tokenRevoke: "/academy/admin/token/revoke",
+    catalog: "/academy/admin/catalog",
+    course: "/academy/admin/course",
+    lesson: "/academy/admin/lesson",
+    material: "/academy/admin/material",
+    sync: "/academy/admin/sync",
+    health: "/academy/admin/health"
+  }
+};
+
+const state = {
+  students: [
+    {id:"stu_001",name:"Daniela Rodrigues",email:"daniela@email.com",token:"SUMAIA-7K92-KL8P",role:"student",access:["primeiros-passos"],active:true},
+    {id:"stu_002",name:"Marina Souza",email:"marina@email.com",token:"SUMAIA-X5LA-18QD",role:"student",access:["primeiros-passos"],active:true},
+    {id:"stu_003",name:"Rafael Lima",email:"rafael@email.com",token:"SUMAIA-2QAZ-77MM",role:"student",access:["primeiros-passos","acordes-essenciais"],active:true}
+  ],
+  courses: [
+    {id:"primeiros-passos",title:"Primeiros Passos no Violão",level:"Iniciante",lessons:8,status:"Publicado",folder:"D:\\\\sumaia-academy\\\\cursos\\\\primeiros-passos"},
+    {id:"acordes-essenciais",title:"Acordes Essenciais",level:"Iniciante",lessons:6,status:"Rascunho",folder:"D:\\\\sumaia-academy\\\\cursos\\\\acordes-essenciais"}
+  ]
+};
+
+const $ = s => document.querySelector(s);
+const $$ = s => [...document.querySelectorAll(s)];
+
+function toast(msg){
+  const el=$("#toast"); el.textContent=msg; el.classList.add("show");
+  setTimeout(()=>el.classList.remove("show"),2200);
+}
+function token(){
+  const chars="ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
+  const part=()=>Array.from({length:4},()=>chars[Math.floor(Math.random()*chars.length)]).join("");
+  return `SUMAIA-${part()}-${part()}`;
+}
+function renderStudents(){
+  $("#studentsTable").innerHTML=state.students.map(s=>`
+    <tr>
+      <td><b>${s.name}</b><div class="mini">${s.id}</div></td>
+      <td>${s.email}</td>
+      <td><span class="token">${s.token}</span></td>
+      <td>${s.access.map(x=>`<span class="tag">${x}</span>`).join(" ")}</td>
+      <td>${s.active?'<span class="tag green">Ativo</span>':'<span class="tag red">Revogado</span>'}</td>
+      <td><div class="row-actions">
+        <button class="small-btn copy-token" data-token="${s.token}">Copiar token</button>
+        <button class="small-btn revoke-token" data-id="${s.id}">${s.active?"Revogar":"Reativar"}</button>
+      </div></td>
+    </tr>`).join("");
+  $("#statStudents").textContent=state.students.filter(s=>s.active).length;
+  $("#statTokens").textContent=state.students.filter(s=>s.active).length;
+  $$(".copy-token").forEach(b=>b.onclick=async()=>{try{await navigator.clipboard.writeText(b.dataset.token);toast("Token copiado.");}catch{toast(b.dataset.token);}});
+  $$(".revoke-token").forEach(b=>b.onclick=()=>{const s=state.students.find(x=>x.id===b.dataset.id);s.active=!s.active;renderStudents();toast(s.active?"Acesso reativado.":"Token revogado.");});
+}
+function renderCourses(){
+  $("#courseList").innerHTML=state.courses.map(c=>`
+    <article class="course">
+      <div class="course-cover">♫</div>
+      <div><h3>${c.title}</h3><p>${c.level} · ${c.lessons} aulas · <span class="token">${c.id}</span></p><p style="margin-top:5px">${c.folder}</p></div>
+      <div class="row-actions"><span class="tag ${c.status==="Publicado"?"green":""}">${c.status}</span><button class="small-btn">Editar</button></div>
+    </article>`).join("");
+  $("#statCourses").textContent=state.courses.filter(c=>c.status==="Publicado").length;
+  $("#statLessons").textContent=state.courses.reduce((a,c)=>a+c.lessons,0);
+}
+function openModal(id){$("#"+id).classList.add("open")}
+function closeModal(id){$("#"+id).classList.remove("open")}
+$$("[data-close]").forEach(b=>b.onclick=()=>closeModal(b.dataset.close));
+
+$$("[data-page]").forEach(b=>b.onclick=()=>{
+  $$("[data-page]").forEach(x=>x.classList.remove("active"));b.classList.add("active");
+  $$(".page").forEach(x=>x.classList.remove("active"));$("#"+b.dataset.page).classList.add("active");
+  $("#topTitle").textContent=b.textContent.trim().replace(/^[^A-Za-zÀ-ÿ]+/,"");
+  $("#sidebar").classList.remove("open");
+});
+$("#openMenu").onclick=()=>$("#sidebar").classList.toggle("open");
+
+$("#adminLogin").onclick=()=>{
+  const t=$("#adminToken").value.trim();
+  if(CONFIG.DEMO_MODE && t===CONFIG.ADMIN_DEMO_TOKEN){
+    sessionStorage.setItem("sumaia-admin","demo");
+    $("#login").classList.add("hidden");$("#app").classList.remove("hidden");$("#adminError").textContent="";
+    renderStudents();renderCourses();toast("Admin conectado.");
+  }else $("#adminError").textContent="Token administrativo inválido.";
+};
+$("#adminToken").addEventListener("keydown",e=>{if(e.key==="Enter")$("#adminLogin").click()});
+$("#logoutBtn").onclick=()=>{sessionStorage.removeItem("sumaia-admin");$("#app").classList.add("hidden");$("#login").classList.remove("hidden");$("#adminToken").value=""};
+
+$("#themeBtn").onclick=()=>{const n=document.documentElement.dataset.theme==="light"?"dark":"light";document.documentElement.dataset.theme=n;localStorage.setItem("sumaia-admin-theme",n);$("#themeBtn").textContent=n==="light"?"☾ Tema":"☀ Tema"};
+document.documentElement.dataset.theme=localStorage.getItem("sumaia-admin-theme")||"light";
+
+$("#newStudent").onclick=$("#quickStudent").onclick=()=>openModal("studentModal");
+$("#newCourse").onclick=()=>openModal("courseModal");
+
+$("#createStudent").onclick=async()=>{
+  const name=$("#studentName").value.trim(),email=$("#studentEmail").value.trim();
+  if(!name||!email){toast("Preencha nome e e-mail.");return}
+  const s={id:"stu_"+Date.now(),name,email,token:token(),role:$("#studentRole").value,access:$("#studentAccess").value.split(",").map(x=>x.trim()).filter(Boolean),active:true};
+  state.students.unshift(s);renderStudents();closeModal("studentModal");
+  $("#studentName").value="";$("#studentEmail").value="";
+  try{await navigator.clipboard.writeText(s.token);toast("Aluno criado. Token copiado.");}catch{toast("Aluno criado: "+s.token);}
+};
+
+$("#createCourse").onclick=()=>{
+  const title=$("#courseTitle").value.trim(),id=$("#courseSlug").value.trim();
+  if(!title||!id){toast("Informe título e slug.");return}
+  state.courses.unshift({id,title,level:$("#courseLevel").value,lessons:0,status:$("#courseStatus").value,folder:$("#courseFolder").value.trim()});
+  renderCourses();closeModal("courseModal");toast("Curso criado.");
+};
+
+$("#saveLesson").onclick=()=>toast("Aula salva no catálogo demo.");
+$("#newLesson").onclick=()=>toast("Editor de nova aula será conectado ao endpoint /lesson.");
+$("#newMaterial").onclick=()=>toast("Cadastro de material preparado para o n8n.");
+$("#saveSettings").onclick=()=>toast("Configurações salvas localmente no MVP.");
+
+$("#testApi").onclick=async()=>{
+  CONFIG.API_BASE=$("#apiBase").value.trim();
+  if(CONFIG.DEMO_MODE){$("#apiResult").textContent="✓ Modo demo: contrato de API configurado.";toast("Conexão simulada com sucesso.");return}
+  try{
+    const r=await fetch(CONFIG.API_BASE+CONFIG.ENDPOINTS.health,{headers:{"X-Admin-Token":$("#apiAdminToken").value}});
+    $("#apiResult").textContent=r.ok?"✓ Backend disponível.":"Backend respondeu com erro.";
+  }catch(e){$("#apiResult").textContent="Falha: "+e.message}
+};
+$("#scanFolder").onclick=()=>toast("Solicitação de scan preparada para /academy/admin/sync.");
+$("#syncNow").onclick=()=>toast("Catálogo sincronizado no modo demo.");
+
+$("#exportBtn").onclick=()=>{
+  const payload={exportedAt:new Date().toISOString(),students:state.students,courses:state.courses,config:{contentRoot:$("#contentRoot").value,apiBase:$("#apiBase").value}};
+  const blob=new Blob([JSON.stringify(payload,null,2)],{type:"application/json"});
+  const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="sumaia-academy-admin-export.json";a.click();URL.revokeObjectURL(a.href);
+  toast("JSON exportado.");
+};
+
+if(sessionStorage.getItem("sumaia-admin")){
+  $("#login").classList.add("hidden");$("#app").classList.remove("hidden");renderStudents();renderCourses();
+}
+</script>
+</body>
+</html>
