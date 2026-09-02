@@ -171,12 +171,12 @@
     .results-brand h3{margin:0;font:700 1.5rem "Space Grotesk"}
     .results-brand p{margin:4px 0 0;color:var(--muted)}
     .pulse-circle{width:86px;height:86px;border-radius:50%;display:grid;place-items:center;border:1px solid rgba(215,255,0,.3);color:var(--acid);box-shadow:var(--shadow-neon)}
-    .metrics-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
-    .metric{padding:22px;border-radius:20px;min-height:180px;position:relative;overflow:hidden}
+    .metrics-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+    .metric{padding:22px;border-radius:20px;min-height:176px;position:relative;overflow:hidden}
     .metric::before{content:"";position:absolute;inset:auto -20% -72% 10%;height:180px;background:radial-gradient(circle, rgba(215,255,0,.15), transparent 64%)}
     .metric .label{font-size:.78rem;color:#d7dada;display:block;margin-bottom:14px}
-    .metric strong{display:block;font:800 2rem/1 "Space Grotesk";letter-spacing:-.06em;color:var(--acid)}
-    .metric small{display:block;color:var(--muted);margin-top:8px;line-height:1.5}
+    .metric strong{display:block;font:800 clamp(1.55rem,2.2vw,2rem)/1.02 "Space Grotesk";letter-spacing:-.055em;color:var(--acid);overflow-wrap:anywhere}
+    .metric small{display:block;color:var(--muted);margin-top:9px;line-height:1.48;max-width:30ch}
     .chart{height:58px;margin-top:16px}
     .chart svg{width:100%;height:100%}
     .quote-box{padding:24px;border-radius:22px;color:#e8ebeb;line-height:1.72}
@@ -434,7 +434,7 @@
           <div>
             <div class="eyebrow">Projetos</div>
             <h2 class="headline">Projetos reais. <em>Sites no ar.</em></h2>
-            <p class="lede">Acesse os projetos publicados e veja a entrega funcionando no ambiente real.</p>
+            <p class="lede">Sites, plataformas e experimentos interativos publicados. Abra o projeto real ou explore o case.</p>
           </div>
         </div>
 
@@ -443,6 +443,7 @@
           <button class="filter" data-filter="site">Sites</button>
           <button class="filter" data-filter="platform">Plataformas</button>
           <button class="filter" data-filter="commerce">E-commerce</button>
+          <button class="filter" data-filter="immersive">VR / 3D / IA</button>
         </div>
 
         <div class="projects-grid" id="projectGrid">
@@ -478,6 +479,47 @@
             <div class="project-visual bg-dr"><div class="browser"><div class="browser-bar"><i></i><i></i><i></i></div><div class="site-shot live-preview" data-url="https://drdebolso.vercel.app"><div class="preview-fallback"><span class="preview-kicker">SITE AO VIVO</span><strong>drdebolso.vercel.app</strong><small>Prévia carregada diretamente do projeto</small></div><img class="preview-static" loading="lazy" decoding="async" src="https://image.thum.io/get/width/900/crop/620/noanimate/https://drdebolso.vercel.app" alt="Captura do site drdebolso.vercel.app" onerror="this.style.display='none'"><iframe title="Prévia de drdebolso.vercel.app" loading="lazy" sandbox="allow-scripts allow-same-origin allow-forms allow-popups" referrerpolicy="no-referrer-when-downgrade"></iframe><div class="preview-domain">drdebolso.vercel.app</div></div></div></div>
             <div class="project-content"><h3>Dr de Bolso</h3><p>Plataforma</p><div class="project-actions"><a class="mini-btn" href="https://drdebolso.vercel.app" target="_blank" rel="noopener">Abrir site</a><button class="mini-btn primary project-open" data-project="Dr de Bolso">Ver case</button></div></div>
           </article>
+          <article class="project-card glass reveal tilt" data-category="immersive">
+            <div class="project-visual" style="background:linear-gradient(135deg,#151b18,#394d35)">
+              <div class="browser"><div class="browser-bar"><i></i><i></i><i></i></div>
+                <div class="site-shot live-preview" data-url="https://devcodar.github.io/testear.github.io/">
+                  <div class="preview-fallback"><span class="preview-kicker">WEB 3D</span><strong>Car Vehicle 360°</strong><small>Render interativo com orientação do dispositivo</small></div>
+                  <img class="preview-static" loading="lazy" decoding="async" src="https://image.thum.io/get/width/900/crop/620/noanimate/https://devcodar.github.io/testear.github.io/" alt="Prévia do projeto Car Vehicle 360" onerror="this.style.display='none'">
+                  <iframe title="Prévia do projeto Car Vehicle 360" loading="lazy" sandbox="allow-scripts allow-same-origin allow-forms allow-popups" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                  <div class="preview-domain">devcodar.github.io/testear.github.io</div>
+                </div>
+              </div>
+            </div>
+            <div class="project-content"><h3>Car Vehicle 360°</h3><p>Web 3D • Giroscópio • Automotive</p><div class="project-actions"><a class="mini-btn" href="https://devcodar.github.io/testear.github.io/" target="_blank" rel="noopener">Experimentar</a><button class="mini-btn primary project-open" data-project="Car Vehicle 360°">Ver case</button></div></div>
+          </article>
+
+          <article class="project-card glass reveal tilt" data-category="immersive">
+            <div class="project-visual" style="background:linear-gradient(135deg,#321143,#6c238b)">
+              <div class="browser"><div class="browser-bar"><i></i><i></i><i></i></div>
+                <div class="site-shot live-preview" data-url="https://devcodar.github.io/lyralab.github.io/lyralab.html">
+                  <div class="preview-fallback"><span class="preview-kicker">AI PRODUCT</span><strong>Lyra Lab</strong><small>LLMs, multimodalidade e criação em uma única experiência</small></div>
+                  <img class="preview-static" loading="lazy" decoding="async" src="https://image.thum.io/get/width/900/crop/620/noanimate/https://devcodar.github.io/lyralab.github.io/lyralab.html" alt="Prévia da plataforma Lyra Lab" onerror="this.style.display='none'">
+                  <iframe title="Prévia da plataforma Lyra Lab" loading="lazy" sandbox="allow-scripts allow-same-origin allow-forms allow-popups" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                  <div class="preview-domain">devcodar.github.io/lyralab.github.io</div>
+                </div>
+              </div>
+            </div>
+            <div class="project-content"><h3>Lyra Lab</h3><p>IA multimodal • LLMs • Prototipagem</p><div class="project-actions"><a class="mini-btn" href="https://devcodar.github.io/lyralab.github.io/lyralab.html" target="_blank" rel="noopener">Abrir Lab</a><button class="mini-btn primary project-open" data-project="Lyra Lab">Ver case</button></div></div>
+          </article>
+
+          <article class="project-card glass reveal tilt" data-category="immersive">
+            <div class="project-visual" style="background:linear-gradient(135deg,#06141c,#123945)">
+              <div class="browser"><div class="browser-bar"><i></i><i></i><i></i></div>
+                <div class="site-shot live-preview" data-url="https://devcodar.github.io/testear.github.io/danke.html">
+                  <div class="preview-fallback"><span class="preview-kicker">SPATIAL / XR</span><strong>DANKE XR</strong><small>Spatial creation, WebXR e visão computacional</small></div>
+                  <img class="preview-static" loading="lazy" decoding="async" src="https://image.thum.io/get/width/900/crop/620/noanimate/https://devcodar.github.io/testear.github.io/danke.html" alt="Prévia do projeto Danke XR" onerror="this.style.display='none'">
+                  <iframe title="Prévia do projeto Danke XR" loading="lazy" sandbox="allow-scripts allow-same-origin allow-forms allow-popups" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                  <div class="preview-domain">devcodar.github.io/testear.github.io/danke.html</div>
+                </div>
+              </div>
+            </div>
+            <div class="project-content"><h3>Danke XR</h3><p>WebXR • Spatial Computing • Vision</p><div class="project-actions"><a class="mini-btn" href="https://devcodar.github.io/testear.github.io/danke.html" target="_blank" rel="noopener">Abrir experiência</a><button class="mini-btn primary project-open" data-project="Danke XR">Ver case</button></div></div>
+          </article>
         </div>
       </div>
     </section>
@@ -493,16 +535,16 @@
           </aside>
           <div class="results-panel glass reveal">
             <div class="results-top">
-              <div class="results-brand"><div class="results-logo">OPHELIA</div><div><h3>Ophelia Social Media</h3><p>Evolução orgânica observada em menos de 15 dias, sem mídia paga.</p></div></div>
+              <div class="results-brand"><div class="results-logo">OPHELIA</div><div><h3>Ophelia Social Media</h3><p>Evolução orgânica em menos de 15 dias, sem mídia paga.</p></div></div>
               <div class="pulse-circle">⚡</div>
             </div>
             <div class="metrics-grid">
-              <article class="metric glass tilt"><span class="label">Velocidade</span><strong>&lt; 15 dias</strong><small>Primeiros sinais observados após a implantação.</small><div class="chart"><svg viewBox="0 0 200 60"><polyline fill="none" stroke="#d7ff00" stroke-width="3" points="0,48 28,44 56,36 82,30 112,25 140,19 170,13 200,7"/></svg></div></article>
-              <article class="metric glass tilt"><span class="label">Aquisição</span><strong>Orgânico</strong><small>Aquisição e alcance obtidos sem compra de distribuição.</small><div class="chart"><svg viewBox="0 0 200 60"><polyline fill="none" stroke="#d7ff00" stroke-width="3" points="0,50 28,42 56,40 82,31 112,33 140,21 170,18 200,9"/></svg></div></article>
-              <article class="metric glass tilt"><span class="label">Operação</span><strong>+ inteligente</strong><small>Menos tarefas isoladas e mais continuidade entre planejamento e publicação.</small><div class="chart"><svg viewBox="0 0 200 60"><polyline fill="none" stroke="#d7ff00" stroke-width="3" points="0,45 28,39 56,35 82,34 112,25 140,20 170,16 200,10"/></svg></div></article>
-              <article class="metric glass tilt"><span class="label">Escala</span><strong>Processos</strong><small>Processos estruturados para repetir o que funciona e medir o que muda.</small><div class="chart"><svg viewBox="0 0 200 60"><polyline fill="none" stroke="#d7ff00" stroke-width="3" points="0,52 28,46 56,40 82,32 112,28 140,21 170,18 200,8"/></svg></div></article>
+              <article class="metric glass tilt"><span class="label">Velocidade</span><strong>&lt; 15 dias</strong><small>Primeiros sinais de evolução após a implantação.</small><div class="chart"><svg viewBox="0 0 200 60"><polyline fill="none" stroke="#d7ff00" stroke-width="3" points="0,48 28,44 56,36 82,30 112,25 140,19 170,13 200,7"/></svg></div></article>
+              <article class="metric glass tilt"><span class="label">Aquisição</span><strong>Orgânico</strong><small>Alcance e resposta sem mídia paga.</small><div class="chart"><svg viewBox="0 0 200 60"><polyline fill="none" stroke="#d7ff00" stroke-width="3" points="0,50 28,42 56,40 82,31 112,33 140,21 170,18 200,9"/></svg></div></article>
+              <article class="metric glass tilt"><span class="label">Operação</span><strong>Fluxo integrado</strong><small>Planejamento, conteúdo e automação trabalhando juntos.</small><div class="chart"><svg viewBox="0 0 200 60"><polyline fill="none" stroke="#d7ff00" stroke-width="3" points="0,45 28,39 56,35 82,34 112,25 140,20 170,16 200,10"/></svg></div></article>
+              <article class="metric glass tilt"><span class="label">Escala</span><strong>Repetível</strong><small>Processos preparados para medir, repetir e evoluir.</small><div class="chart"><svg viewBox="0 0 200 60"><polyline fill="none" stroke="#d7ff00" stroke-width="3" points="0,52 28,46 56,40 82,32 112,28 140,21 170,18 200,8"/></svg></div></article>
             </div>
-            <div class="quote-box glass">O ponto não é automatizar por automatizar. É construir uma operação em que <b>conteúdo, dados e execução</b> produzam aprendizado contínuo — e não apenas volume de publicação.</div>
+            <div class="quote-box glass">A automação entra para conectar <b>conteúdo, dados e execução</b> — reduzindo atrito e tornando o que funciona mais fácil de repetir.</div>
           </div>
         </div>
       </div>
@@ -511,7 +553,7 @@
     <section class="section section-line" id="lab">
       <div class="container">
         <div class="eyebrow">Lab / inovação</div>
-        <h2 class="headline">Do software ao objeto.. <em>Experiência, automação e prototipagem.</em></h2>
+        <h2 class="headline">Do software ao objeto. <em>Experiência, automação e prototipagem.</em></h2>
         <div class="lab-grid" style="margin-top:32px">
           <div class="lab-main glass reveal">
             <div class="floating-panel glass"><b>Impressão 3D & Prototipagem</b><span style="color:var(--muted);font-size:.9rem;line-height:1.65">Prototipagem rápida para transformar uma ideia digital em algo que pode ser segurado, testado e apresentado.</span></div>
@@ -597,7 +639,6 @@
       <div class="socials">
         <a href="https://instagram.com/thunber_agencia" target="_blank" rel="noopener" aria-label="Instagram">◎</a>
         <a href="#" aria-label="LinkedIn">in</a>
-        <a href="#" aria-label="Behance">Bē</a>
       </div>
     </div>
   </footer>
@@ -839,7 +880,10 @@
       'Poderosa Beleza': { type:['E-commerce','Experiência','Branding'], text:'Projeto de presença digital e comércio eletrônico orientado a produto, navegação e identidade visual.', url:'https://poderosabeleza.com.br' },
       'Adega Virtual': { type:['E-commerce','Produto','Conversão'], text:'Ambiente voltado à exposição de catálogo, experiência de compra e apresentação dos itens.', url:'https://www.adegavirtual.com/' },
       'Brazilian Games': { type:['Marketplace','Growth','Comunidade'], text:'Projeto voltado ao ecossistema gamer, com foco em produto digital, comunicação, aquisição e experiência de marketplace.', url:'https://braziliangames.com.br' },
-      'Dr de Bolso': { type:['Plataforma','Acesso','Saúde'], text:'Plataforma com proposta de acesso unificado e experiência funcional para profissionais e pacientes.', url:'https://drdebolso.vercel.app' }
+      'Dr de Bolso': { type:['Plataforma','Acesso','Saúde'], text:'Plataforma com proposta de acesso unificado e experiência funcional para profissionais e pacientes.', url:'https://drdebolso.vercel.app' },
+      'Car Vehicle 360°': { type:['Web 3D','Giroscópio','Automotive'], text:'Experiência automotiva 360° no navegador, com render interativo e suporte à orientação do dispositivo para ampliar a sensação espacial em smartphones compatíveis.', url:'https://devcodar.github.io/testear.github.io/' },
+      'Lyra Lab': { type:['IA','Multimodal','Produto'], text:'Plataforma de IA que reúne LLMs, criação multimodal, análise de arquivos, geração de interfaces e prototipagem rápida em uma única experiência.', url:'https://devcodar.github.io/lyralab.github.io/lyralab.html' },
+      'Danke XR': { type:['WebXR','Spatial Computing','Computer Vision'], text:'Ambiente de criação espacial que combina edição 3D, WebXR, comportamentos sem código e visão computacional para experimentação em VR/MR diretamente no navegador.', url:'https://devcodar.github.io/testear.github.io/danke.html' }
     };
     function openModal(name){
       const p = projectData[name]; if(!p) return;
