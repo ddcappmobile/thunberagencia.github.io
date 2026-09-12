@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <meta name="theme-color" content="#050505" />
-  <meta name="description" content="Thunber Agência — estratégia, criatividade, tecnologia, automações, pesquisa, VR/AR, impressão 3D e sistemas sob demanda." />
+  <meta name="description" content="Thunber Agência — automações inteligentes, APIs, sistemas sob medida e produtos como a Ophelia para resolver problemas reais de operação e crescimento." />
   <meta property="og:title" content="Thunber Agência — ideias que viram resultados" />
   <meta property="og:description" content="Soluções digitais e físicas para empresas que querem crescer com inteligência." />
   <meta property="og:type" content="website" />
@@ -149,6 +149,7 @@
     .bg-cecilia{background:linear-gradient(135deg,#ede2d4,#8d7d6a)}
     .bg-yalle{background:linear-gradient(135deg,#2f4654,#b58b4d)}
     .bg-surplus{background:linear-gradient(135deg,#0e2b57,#3d75df)}
+    .bg-russel{background:linear-gradient(135deg,#0b3348,#1e8f99)}
     .bg-poderosa{background:linear-gradient(135deg,#50105f,#180618)}
     .bg-adega{background:linear-gradient(135deg,#3f2614,#120d09)}
     .bg-bgames{background:linear-gradient(135deg,#03292f,#082a57)}
@@ -181,6 +182,51 @@
     .chart svg{width:100%;height:100%}
     .quote-box{padding:24px;border-radius:22px;color:#e8ebeb;line-height:1.72}
     .quote-box b{color:var(--acid)}
+
+    .ophelia-grid{display:grid;grid-template-columns:.82fr 1.18fr;gap:22px;align-items:stretch;margin-top:40px}
+    .ophelia-story{padding:34px;border-radius:28px;display:flex;flex-direction:column;justify-content:space-between;min-height:520px;position:relative;overflow:hidden}
+    .ophelia-story::after{content:"O";position:absolute;right:-22px;bottom:-72px;font:900 19rem/1 "Space Grotesk";color:rgba(215,255,0,.035);pointer-events:none}
+    .ophelia-story h3{font:700 clamp(1.7rem,2.6vw,2.7rem)/1.02 "Space Grotesk";letter-spacing:-.05em;margin:0 0 16px;max-width:12ch}
+    .ophelia-story p{color:var(--muted);line-height:1.72;margin:0;max-width:55ch}
+    .ophelia-capabilities{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:28px}
+    .ophelia-capability{padding:20px;border-radius:20px;min-height:188px;position:relative;overflow:hidden}
+    .ophelia-capability::after{content:"";position:absolute;width:110px;height:110px;border-radius:50%;right:-50px;bottom:-55px;background:rgba(215,255,0,.08);filter:blur(8px)}
+    .ophelia-capability .cap-icon{width:42px;height:42px;border-radius:13px;display:grid;place-items:center;background:rgba(215,255,0,.09);border:1px solid rgba(215,255,0,.2);color:var(--acid);font-weight:900;margin-bottom:18px}
+    .ophelia-capability h3{font:700 1rem/1.15 "Space Grotesk";margin:0 0 9px}
+    .ophelia-capability p{color:var(--muted);font-size:.82rem;line-height:1.58;margin:0}
+    .ophelia-capability b{color:#eef0dc;font-weight:700}
+    .ophelia-list{display:grid;gap:11px;margin:28px 0;position:relative;z-index:1}
+    .ophelia-list div{display:flex;align-items:flex-start;gap:11px;padding:12px 0;border-bottom:1px solid var(--line);font-size:.9rem;color:#e4e7e7}
+    .ophelia-list i{width:22px;height:22px;border-radius:50%;display:grid;place-items:center;background:rgba(215,255,0,.1);color:var(--acid);font-style:normal;font-size:.7rem;flex:0 0 auto}
+    .ophelia-console{padding:24px;border-radius:28px;background:linear-gradient(145deg,rgba(18,18,18,.94),rgba(7,7,7,.96));border:1px solid rgba(215,255,0,.15);box-shadow:var(--shadow-neon);min-width:0}
+    .console-head{display:flex;justify-content:space-between;align-items:center;gap:16px;padding-bottom:18px;border-bottom:1px solid var(--line)}
+    .console-brand{display:flex;align-items:center;gap:12px}.console-mark{width:44px;height:44px;border-radius:14px;display:grid;place-items:center;background:var(--acid);color:#050505;font:900 1.2rem "Space Grotesk"}
+    .console-brand b{display:block;font:700 1rem "Space Grotesk"}.console-brand span{display:block;color:var(--muted);font-size:.72rem;margin-top:3px}
+    .console-status{display:inline-flex;align-items:center;gap:7px;padding:7px 10px;border-radius:999px;border:1px solid rgba(215,255,0,.22);background:rgba(215,255,0,.06);color:var(--acid);font-size:.72rem;font-weight:800;white-space:nowrap}
+    .console-status::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--acid);box-shadow:0 0 12px var(--acid)}
+    .console-metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:16px 0}
+    .console-metric{padding:16px;border-radius:17px;background:rgba(255,255,255,.035);border:1px solid var(--line)}
+    .console-metric span{display:block;color:var(--muted);font-size:.72rem;line-height:1.35}.console-metric b{display:block;font:800 1.45rem "Space Grotesk";color:var(--acid);margin-top:8px}
+    .ophelia-flow{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:12px}
+    .flow-step{min-height:120px;padding:14px;border-radius:16px;background:#0c0c0c;border:1px solid var(--line);position:relative}
+    .flow-step:not(:last-child)::after{content:"→";position:absolute;right:-9px;top:50%;transform:translateY(-50%);z-index:2;width:18px;height:18px;border-radius:50%;display:grid;place-items:center;background:#111;color:var(--acid);font-size:.72rem}
+    .flow-step small{color:var(--acid);font-weight:800}.flow-step b{display:block;font-size:.84rem;margin:10px 0 5px}.flow-step span{display:block;color:var(--muted);font-size:.72rem;line-height:1.45}
+    .ophelia-note{margin-top:14px;padding:15px 16px;border-radius:16px;background:rgba(215,255,0,.055);border:1px solid rgba(215,255,0,.13);color:#e7ebd1;font-size:.82rem;line-height:1.55}
+
+    .api-layout{display:grid;grid-template-columns:.84fr 1.16fr;gap:22px;align-items:start;margin-top:40px}
+    .api-copy{padding:30px;border-radius:26px;position:sticky;top:104px}
+    .api-copy h3{font:700 clamp(1.6rem,2.4vw,2.5rem)/1.02 "Space Grotesk";letter-spacing:-.05em;margin:0 0 16px}
+    .api-copy p{color:var(--muted);line-height:1.7;margin:0}
+    .api-tags{display:flex;flex-wrap:wrap;gap:9px;margin:24px 0}
+    .api-stack{display:grid;gap:12px}
+    .api-card{padding:22px;border-radius:22px;display:grid;grid-template-columns:52px 1fr;gap:16px;align-items:start;position:relative;overflow:hidden}
+    .api-card::after{content:"";position:absolute;inset:0;background:linear-gradient(110deg,transparent,rgba(215,255,0,.035),transparent);transform:translateX(-100%);transition:.6s}
+    .api-card:hover::after{transform:translateX(100%)}
+    .api-icon{width:52px;height:52px;border-radius:16px;display:grid;place-items:center;background:#090909;border:1px solid rgba(215,255,0,.25);color:var(--acid);font:800 .85rem "Space Grotesk"}
+    .api-card h3{margin:2px 0 8px;font:700 1.08rem "Space Grotesk"}.api-card p{margin:0;color:var(--muted);font-size:.86rem;line-height:1.58}
+    .api-terminal{margin-top:14px;border-radius:22px;overflow:hidden;border:1px solid rgba(215,255,0,.18);background:#060806;box-shadow:var(--shadow-neon)}
+    .terminal-bar{height:42px;display:flex;align-items:center;gap:7px;padding:0 15px;border-bottom:1px solid var(--line);background:#0c0e0c}.terminal-bar i{width:8px;height:8px;border-radius:50%;background:#58605b}.terminal-bar span{margin-left:auto;color:var(--muted);font-size:.7rem}
+    .terminal-body{padding:22px;font:500 .78rem/1.8 ui-monospace,SFMono-Regular,Consolas,monospace;color:#c9cfca;overflow:auto}.terminal-body .method{color:var(--acid);font-weight:800}.terminal-body .key{color:#8fe4d2}.terminal-body .ok{color:#93f1a8}
 
     .lab-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:18px;align-items:stretch}
     .lab-main{padding:34px;border-radius:28px;min-height:560px;position:relative;overflow:hidden}
@@ -260,7 +306,7 @@
     @keyframes techScroll{to{transform:translateX(-50%)}}
 
     @media (max-width:1080px){
-      .hero-grid,.services-wrap,.case-split,.lab-grid,.cta-panel{grid-template-columns:1fr}
+      .hero-grid,.services-wrap,.case-split,.lab-grid,.cta-panel,.ophelia-grid,.api-layout{grid-template-columns:1fr}
       .hero-side{min-height:520px}
       .hero-cards{grid-template-columns:repeat(2,1fr)}
       .projects-grid{grid-template-columns:repeat(2,1fr)}
@@ -269,30 +315,57 @@
       .gallery-card:first-child{grid-column:1 / -1;min-height:420px}
       .services-side,.result-side{position:relative;top:auto}
     }
+    @media (max-width:940px){.nav-links,.nav > .btn{display:none}.menu-toggle{display:block}}
     @media (max-width:760px){
+      html{scroll-padding-top:82px}
+      body{padding-bottom:74px}
       .container{width:min(100% - 24px,var(--max))}
-      .section{padding:84px 0}
-      header{top:8px}
+      .section{padding:64px 0}
+      .headline{font-size:clamp(2rem,10vw,2.75rem);line-height:1.01;letter-spacing:-.05em}
+      .lede{font-size:.96rem;line-height:1.62}
+      header{top:max(8px,env(safe-area-inset-top))}
       .nav{height:64px;padding:0 10px 0 16px;border-radius:18px}
       .brand{font-size:1.08rem}
       .nav-links,.nav > .btn{display:none}
       .menu-toggle{display:block}
-      .hero{padding-top:108px;min-height:auto}
-      .hero-side{min-height:390px}
+      .mobile-menu{padding:calc(92px + env(safe-area-inset-top)) 18px calc(24px + env(safe-area-inset-bottom));overflow-y:auto;overscroll-behavior:contain}
+      .mobile-menu a{font-size:clamp(1.45rem,7vw,1.9rem);padding:13px 4px}
+      .hero{padding-top:104px;min-height:auto}
+      .hero h1{font-size:clamp(2.6rem,13vw,3.65rem);line-height:.94}
+      .hero p{font-size:.97rem;line-height:1.62;margin:18px 0 24px}
+      .hero-actions{display:grid;grid-template-columns:1fr;width:100%}
+      .hero-actions .btn{width:100%;min-height:50px}
+      .hero-side{min-height:300px}
+      .lightning-wrap{width:min(240px,66vw)}
+      .spiral{width:min(390px,110vw)}
       .badge-round{width:116px;height:116px;bottom:8%;right:2%}
       .badge-round::before{font-size:.49rem;letter-spacing:.12em}
       .hero-cards{grid-template-columns:1fr}
       .services-grid,.projects-grid,.metrics-grid,.gallery-grid,.cta-values{grid-template-columns:1fr}
+      .services-side,.service-card,.stat-card{padding:20px}.service-card{min-height:auto}
+      .projects-toolbar{overflow-x:auto;flex-wrap:nowrap;padding-bottom:8px;scrollbar-width:none}.projects-toolbar::-webkit-scrollbar{display:none}.filter{white-space:nowrap;min-height:44px}
+      .project-visual{height:190px}.project-content{padding:16px}.project-actions{display:grid;grid-template-columns:1fr 1fr}.mini-btn{min-height:44px}
+      .ophelia-capabilities{grid-template-columns:1fr;margin-top:22px}.ophelia-capability{min-height:auto;padding:19px}
+      .ophelia-grid{margin-top:18px}.ophelia-story{padding:24px;min-height:auto}.ophelia-story h3{max-width:16ch}.ophelia-list{margin:22px 0}
+      .ophelia-console{padding:16px}.console-head{align-items:flex-start}.console-status{font-size:.66rem}.console-metrics{grid-template-columns:1fr 1fr}.console-metric:last-child{grid-column:1/-1}.ophelia-flow{grid-template-columns:1fr 1fr}.flow-step{min-height:112px}.flow-step::after{display:none!important}
+      .api-layout{margin-top:26px}.api-copy{position:relative;top:auto;padding:24px}.api-card{grid-template-columns:44px 1fr;padding:18px}.api-icon{width:44px;height:44px;border-radius:13px}.terminal-body{padding:17px;font-size:.7rem}
       .gallery-card:first-child{grid-column:auto;min-height:280px}
       .lab-printer{position:relative;right:auto;bottom:auto;width:min(360px,100%);margin:180px auto 0}
       .floating-panel{position:relative;right:auto;top:auto;max-width:100%;margin-top:18px}
+      .lab-main{padding:24px;min-height:auto}.cta-panel{padding:25px}.cta-panel::after{display:none}
       .footer-row{flex-direction:column;align-items:flex-start}
       .tech-stack{padding:68px 0 72px}
       .tech-heading{display:block}
       .tech-note{margin-top:14px}
       .tech-item{width:132px;flex-basis:132px;height:74px;padding:12px}
       .tech-item img{width:30px;height:30px}
+      #projectModal{padding:10px!important}#projectModal>div{padding:20px!important;border-radius:22px!important;max-height:92svh!important}#modalPreview{height:210px!important}
+      .cursor,.cursor-ring,canvas#energy{display:none!important}
+      .site-shot iframe{display:none!important}
     }
+    @media (hover:none),(pointer:coarse){.cursor,.cursor-ring{display:none!important}.tilt:hover,.mini-btn:hover,.btn:hover,.project-card:hover .preview-static{transform:none}.service-card::before{display:none}}
+    .mobile-contact-bar{display:none}
+    @media (max-width:760px){.mobile-contact-bar{position:fixed;display:grid;grid-template-columns:.78fr 1.22fr;gap:8px;left:0;right:0;bottom:0;z-index:1150;padding:10px 12px calc(10px + env(safe-area-inset-bottom));background:rgba(5,5,5,.94);border-top:1px solid var(--line);backdrop-filter:blur(16px)}.mobile-contact-bar a{min-height:48px;padding:11px 12px}.mobile-contact-bar .btn-ghost{font-size:.82rem}}
     @media (prefers-reduced-motion: reduce){
       *,*::before,*::after{animation-duration:.01ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important;scroll-behavior:auto !important}
       .cursor,.cursor-ring{display:none}
@@ -304,7 +377,7 @@
     "@context":"https://schema.org",
     "@type":"ProfessionalService",
     "name":"Thunber Agência",
-    "description":"Estratégia, criatividade, tecnologia, automações, pesquisa, VR/AR, impressão 3D e sistemas sob demanda.",
+    "description":"Automações inteligentes, APIs, sistemas sob medida, IA, experiências digitais e produtos tecnológicos para resolver problemas reais de operação e crescimento.",
     "sameAs":["https://instagram.com/thunber_agencia"]
   }
   </script>
@@ -323,6 +396,8 @@
         <a href="#inicio" class="brand"><span>THUNBER<span class="bolt-icon">⚡</span></span><small>AGÊNCIA</small></a>
         <div class="nav-links" id="navLinks">
           <a href="#servicos">Serviços</a>
+          <a href="#ophelia">Ophelia</a>
+          <a href="#apis">APIs</a>
           <a href="#projetos">Projetos</a>
           <a href="#resultados">Resultados</a>
           <a href="#lab">Lab</a>
@@ -338,6 +413,8 @@
 
   <div class="mobile-menu" id="mobileMenu">
     <a href="#servicos">Serviços</a>
+    <a href="#ophelia">Ophelia</a>
+    <a href="#apis">APIs</a>
     <a href="#projetos">Projetos</a>
     <a href="#resultados">Resultados</a>
     <a href="#lab">Lab</a>
@@ -354,7 +431,7 @@
           <div>
             <div class="eyebrow reveal">Agência digital & física</div>
             <h1 class="reveal">Do problema à solução. <span class="typed-line">Construímos <span id="typedText">sites que convertem.</span><span class="typed-caret" aria-hidden="true"></span></span></h1>
-            <p class="reveal">Pesquisa, produto, design e engenharia na mesma frente. Criamos sites, sistemas, automações, experiências imersivas e protótipos físicos sem perder o contexto do negócio no caminho.</p>
+            <p class="reveal">Pesquisa, produto, design e engenharia na mesma frente. Criamos sites, APIs, sistemas e automações inteligentes que conectam dados, eliminam tarefas manuais e se ajustam ao problema real do negócio.</p>
             <div class="hero-actions reveal">
               <a class="btn btn-primary magnetic" href="#contato">Apresente seu desafio <span class="round">↗</span></a>
               <a class="btn btn-ghost" href="#projetos">Ver portfólio</a>
@@ -363,6 +440,8 @@
               <span class="chip">Sites</span>
               <span class="chip">Captação de Leads</span>
               <span class="chip">Automações</span>
+              <span class="chip">APIs & Integrações</span>
+              <span class="chip">Agentes de IA</span>
               <span class="chip">VR/AR</span>
               <span class="chip">Impressão 3D</span>
               <span class="chip">Sistemas sob demanda</span>
@@ -418,11 +497,94 @@
             <article class="service-card glass reveal tilt"><span class="link-indicator">↗</span><div class="service-icon">◎</div><h3>Estratégia & Pesquisa</h3><p>Mercado, concorrência, comportamento e validação para decidir com evidência.</p></article>
             <article class="service-card glass reveal tilt"><span class="link-indicator">↗</span><div class="service-icon">⌁</div><h3>Captação de Leads</h3><p>Oferta, landing pages, captura, CRM, follow-up e automação comercial.</p></article>
             <article class="service-card glass reveal tilt"><span class="link-indicator">↗</span><div class="service-icon">◖</div><h3>Marketing & Conteúdo</h3><p>Conteúdo e distribuição conectados ao posicionamento e às métricas do negócio.</p></article>
-            <article class="service-card glass reveal tilt"><span class="link-indicator">↗</span><div class="service-icon">&lt;/&gt;</div><h3>Web & Desenvolvimento</h3><p>Sites, plataformas, e-commerce, APIs e dashboards rápidos e responsivos.</p></article>
+            <article class="service-card glass reveal tilt"><span class="link-indicator">↗</span><div class="service-icon">&lt;/&gt;</div><h3>Web, Sistemas & APIs</h3><p>Sites, plataformas, e-commerce, APIs, microsserviços e dashboards rápidos, seguros e responsivos.</p></article>
             <article class="service-card glass reveal tilt"><span class="link-indicator">↗</span><div class="service-icon">⌘</div><h3>Automações & IA</h3><p>Fluxos, integrações e IA para reduzir trabalho manual e aumentar previsibilidade.</p></article>
             <article class="service-card glass reveal tilt"><span class="link-indicator">↗</span><div class="service-icon">⌬</div><h3>Sistemas sob Demanda</h3><p>Software desenhado para a regra e o fluxo real da operação.</p></article>
             <article class="service-card glass reveal tilt"><span class="link-indicator">↗</span><div class="service-icon">◉</div><h3>VR/AR</h3><p>Experiências imersivas e aplicações de realidade mista, virtual e aumentada.</p></article>
             <article class="service-card glass reveal tilt"><span class="link-indicator">↗</span><div class="service-icon">◇</div><h3>Impressão 3D</h3><p>Modelagem e fabricação rápida para validar forma, função e acabamento.</p></article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-line" id="ophelia">
+      <div class="container">
+        <div class="eyebrow">Inteligência operacional adaptável</div>
+        <h2 class="headline">Ophelia entende o problema e constrói a <em>automação certa para resolvê-lo.</em></h2>
+        <p class="lede">Mais do que uma automação de redes sociais, a Ophelia é uma estrutura inteligente e modular. Ela pode combinar IA, dados, APIs, aprovações e regras de negócio para encontrar oportunidades, executar campanhas e automatizar processos específicos de cada empresa.</p>
+
+        <div class="ophelia-capabilities">
+          <article class="ophelia-capability glass reveal"><div class="cap-icon">◎</div><h3>Encontre e qualifique leads</h3><p>Centralize oportunidades vindas de <b>formulários, campanhas, interações e fontes autorizadas</b>. A Ophelia organiza, classifica e encaminha cada lead para a próxima ação.</p></article>
+          <article class="ophelia-capability glass reveal"><div class="cap-icon">⌁</div><h3>Automatize suas campanhas</h3><p>Conecte objetivos, públicos, calendário, conteúdos e canais. A operação acompanha o fluxo e executa tarefas recorrentes com menos intervenção manual.</p></article>
+          <article class="ophelia-capability glass reveal"><div class="cap-icon">✦</div><h3>Conteúdo orientado ao público</h3><p>Transforme posicionamento e dados da marca em pautas, variações de copy, formatos e chamadas adequadas a cada campanha.</p></article>
+          <article class="ophelia-capability glass reveal"><div class="cap-icon">#</div><h3>Metadados automatizados</h3><p>Gere descrições, palavras-chave, hashtags, texto alternativo, parâmetros UTM e informações de publicação adequadas ao canal e ao objetivo.</p></article>
+          <article class="ophelia-capability glass reveal"><div class="cap-icon">↗</div><h3>Alcance multicanal</h3><p>Adapte e distribua conteúdos em diferentes redes, mantendo consistência de marca e respeitando as regras de cada plataforma.</p></article>
+          <article class="ophelia-capability glass reveal"><div class="cap-icon">◫</div><h3>Aprenda com a operação</h3><p>Reúna métricas, respostas e histórico para identificar o que funciona, sugerir ajustes e tornar os próximos ciclos mais eficientes.</p></article>
+        </div>
+
+        <div class="ophelia-grid">
+          <article class="ophelia-story glass reveal">
+            <div>
+              <h3>Uma base. Diferentes soluções.</h3>
+              <p>Cada empresa possui gargalos, ferramentas e regras próprias. Por isso, a Ophelia pode assumir diferentes funções e evoluir por módulos, sem obrigar o negócio a se adaptar a um processo genérico.</p>
+              <div class="ophelia-list">
+                <div><i>1</i><span>Mapeia o processo, as fontes de dados e as decisões importantes.</span></div>
+                <div><i>2</i><span>Conecta sistemas existentes por APIs, webhooks e integrações.</span></div>
+                <div><i>3</i><span>Automatiza tarefas com regras, IA e pontos de aprovação humana.</span></div>
+                <div><i>4</i><span>Registra resultados, falhas, métricas e oportunidades de melhoria.</span></div>
+              </div>
+            </div>
+            <div class="hero-actions">
+              <a class="btn btn-primary magnetic" href="#contato">Quero conhecer a Ophelia <span class="round">↗</span></a>
+            </div>
+          </article>
+
+          <article class="ophelia-console reveal" aria-label="Visão resumida da operação da Ophelia">
+            <div class="console-head">
+              <div class="console-brand"><div class="console-mark">O</div><div><b>Ophelia Control Center</b><span>Operação multiempresa</span></div></div>
+              <span class="console-status">Operação ativa</span>
+            </div>
+            <div class="console-metrics">
+              <div class="console-metric"><span>Disponibilidade</span><b>24/7</b></div>
+              <div class="console-metric"><span>Estrutura</span><b>Modular</b></div>
+              <div class="console-metric"><span>Operação</span><b>Multi</b></div>
+            </div>
+            <div class="ophelia-flow">
+              <div class="flow-step"><small>01</small><b>Entender</b><span>Processo, gargalo e objetivo.</span></div>
+              <div class="flow-step"><small>02</small><b>Conectar</b><span>Dados, sistemas e canais.</span></div>
+              <div class="flow-step"><small>03</small><b>Automatizar</b><span>Regras, IA e aprovações.</span></div>
+              <div class="flow-step"><small>04</small><b>Otimizar</b><span>Métricas e melhoria contínua.</span></div>
+            </div>
+            <div class="ophelia-note"><b>Exemplo em operação:</b> na Brazilian Games, a Ophelia conecta conteúdo, aprovação, agendamento, publicação, métricas e suporte. A mesma base pode ser adaptada para vendas, atendimento, educação, operações internas e outros fluxos.</div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-line" id="apis">
+      <div class="container">
+        <div class="eyebrow">APIs & Integrações</div>
+        <h2 class="headline">Se os sistemas não conversam, nós construímos a <em>ponte.</em></h2>
+        <p class="lede">Criamos APIs sob medida para transformar ferramentas isoladas em uma operação conectada, segura e pronta para automações inteligentes.</p>
+
+        <div class="api-layout">
+          <aside class="api-copy glass reveal">
+            <h3>Dados certos, no lugar certo, no momento certo.</h3>
+            <p>Uma API bem construída permite que sites, aplicativos, ERPs, CRMs, redes sociais, bancos de dados e agentes de IA compartilhem informações com controle e rastreabilidade.</p>
+            <div class="api-tags"><span class="chip">REST APIs</span><span class="chip">Webhooks</span><span class="chip">OAuth</span><span class="chip">Integrações</span><span class="chip">Microsserviços</span><span class="chip">IA</span></div>
+            <a class="btn btn-primary magnetic" href="#contato">Quero conectar meus sistemas <span class="round">↗</span></a>
+            <div class="api-terminal" aria-label="Exemplo de integração por API">
+              <div class="terminal-bar"><i></i><i></i><i></i><span>ophelia-api</span></div>
+              <div class="terminal-body"><span class="method">POST</span> /v1/automations/run<br><span class="key">authorization:</span> Bearer ••••••••<br><br>{<br>&nbsp;&nbsp;"company": "cliente",<br>&nbsp;&nbsp;"workflow": "qualify_lead",<br>&nbsp;&nbsp;"source": "campaign"<br>}<br><br><span class="ok">✓ 202 accepted · workflow started</span></div>
+            </div>
+          </aside>
+
+          <div class="api-stack">
+            <article class="api-card glass reveal"><div class="api-icon">API</div><div><h3>APIs sob medida</h3><p>Contratos de dados e endpoints desenhados para o processo real da empresa, com documentação clara e estrutura preparada para crescer.</p></div></article>
+            <article class="api-card glass reveal"><div class="api-icon">↔</div><div><h3>Integração entre plataformas</h3><p>Conectamos sistemas novos e legados para eliminar retrabalho, sincronizar cadastros e manter informações consistentes.</p></div></article>
+            <article class="api-card glass reveal"><div class="api-icon">⚿</div><div><h3>Autenticação e controle</h3><p>Login, OAuth, permissões, isolamento por empresa e proteção de rotas para que cada usuário acesse somente o necessário.</p></div></article>
+            <article class="api-card glass reveal"><div class="api-icon">⚡</div><div><h3>Webhooks e eventos</h3><p>Respostas em tempo real para iniciar automações quando um lead chega, um pagamento é confirmado ou uma aprovação acontece.</p></div></article>
+            <article class="api-card glass reveal"><div class="api-icon">IA</div><div><h3>APIs preparadas para inteligência</h3><p>Estruturamos dados e ações para integrar modelos de IA, agentes, classificação, geração de conteúdo e tomada de decisão assistida.</p></div></article>
           </div>
         </div>
       </div>
@@ -462,6 +624,10 @@
           <article class="project-card glass reveal tilt" data-category="platform">
             <div class="project-visual bg-surplus"><div class="browser"><div class="browser-bar"><i></i><i></i><i></i></div><div class="site-shot live-preview" data-url="https://surpluscontabilidade.com.br"><div class="preview-fallback"><span class="preview-kicker">SITE AO VIVO</span><strong>surpluscontabilidade.com.br</strong><small>Prévia carregada diretamente do projeto</small></div><img class="preview-static" loading="lazy" decoding="async" src="https://image.thum.io/get/width/900/crop/620/noanimate/https://surpluscontabilidade.com.br" alt="Captura do site surpluscontabilidade.com.br" onerror="this.style.display='none'"><iframe title="Prévia de surpluscontabilidade.com.br" loading="lazy" sandbox="allow-scripts allow-same-origin allow-forms allow-popups" referrerpolicy="no-referrer-when-downgrade"></iframe><div class="preview-domain">surpluscontabilidade.com.br</div></div></div></div>
             <div class="project-content"><h3>Surplus Contabilidade</h3><p>Plataforma / site</p><div class="project-actions"><a class="mini-btn" href="https://surpluscontabilidade.com.br" target="_blank" rel="noopener">Abrir site</a><button class="mini-btn primary project-open" data-project="Surplus Contabilidade">Ver case</button></div></div>
+          </article>
+          <article class="project-card glass reveal tilt" data-category="platform">
+            <div class="project-visual bg-russel"><div class="browser"><div class="browser-bar"><i></i><i></i><i></i></div><div class="site-shot live-preview" data-url="https://www.russelcontabilidade.com.br/"><div class="preview-fallback"><span class="preview-kicker">SITE AO VIVO</span><strong>russelcontabilidade.com.br</strong><small>Prévia carregada diretamente do projeto</small></div><img class="preview-static" loading="lazy" decoding="async" src="https://image.thum.io/get/width/900/crop/620/noanimate/https://www.russelcontabilidade.com.br/" alt="Captura do site Russel Contabilidade" onerror="this.style.display='none'"><iframe title="Prévia da Russel Contabilidade" loading="lazy" sandbox="allow-scripts allow-same-origin allow-forms allow-popups" referrerpolicy="no-referrer-when-downgrade"></iframe><div class="preview-domain">russelcontabilidade.com.br</div></div></div></div>
+            <div class="project-content"><h3>Russel Contabilidade</h3><p>Site institucional contábil</p><div class="project-actions"><a class="mini-btn" href="https://www.russelcontabilidade.com.br/" target="_blank" rel="noopener">Abrir site</a><button class="mini-btn primary project-open" data-project="Russel Contabilidade">Ver case</button></div></div>
           </article>
           <article class="project-card glass reveal tilt" data-category="commerce">
             <div class="project-visual bg-poderosa"><div class="browser"><div class="browser-bar"><i></i><i></i><i></i></div><div class="site-shot live-preview" data-url="https://poderosabeleza.com.br"><div class="preview-fallback"><span class="preview-kicker">SITE AO VIVO</span><strong>poderosabeleza.com.br</strong><small>Prévia carregada diretamente do projeto</small></div><img class="preview-static" loading="lazy" decoding="async" src="https://image.thum.io/get/width/900/crop/620/noanimate/https://poderosabeleza.com.br" alt="Captura do site poderosabeleza.com.br" onerror="this.style.display='none'"><iframe title="Prévia de poderosabeleza.com.br" loading="lazy" sandbox="allow-scripts allow-same-origin allow-forms allow-popups" referrerpolicy="no-referrer-when-downgrade"></iframe><div class="preview-domain">poderosabeleza.com.br</div></div></div></div>
@@ -632,6 +798,11 @@
     </section>
   </main>
 
+  <div class="mobile-contact-bar" aria-label="Ações rápidas">
+    <a class="btn btn-ghost" href="#ophelia">Ver Ophelia</a>
+    <a class="btn btn-primary" href="mailto:contato@thunber.agencia">Falar com a Thunber <span class="round">↗</span></a>
+  </div>
+
   <footer>
     <div class="container footer-row">
       <div class="brand"><span>THUNBER<span class="bolt-icon">⚡</span></span><small>AGÊNCIA</small></div>
@@ -666,7 +837,7 @@
 
     // Smooth scroll
     let lenis=null;
-    if(!reduceMotion && window.Lenis){
+    if(!reduceMotion && finePointer && window.Lenis){
       lenis = new Lenis({duration:1.08,smoothWheel:true,wheelMultiplier:.88});
       const raf = t => { lenis.raf(t); requestAnimationFrame(raf); };
       requestAnimationFrame(raf);
@@ -735,7 +906,11 @@
       });
       requestAnimationFrame(draw);
     }
-    resize(); draw(); addEventListener('resize', resize);
+    if(innerWidth > 760 && !reduceMotion){
+      resize(); draw(); addEventListener('resize', resize);
+    }else{
+      canvas.style.display='none';
+    }
 
     // Cursor
     const cursor = $('#cursor'), ring = $('#cursorRing');
@@ -793,7 +968,7 @@
     });
 
     // GSAP reveals
-    if(!reduceMotion && window.gsap && window.ScrollTrigger){
+    if(!reduceMotion && finePointer && window.gsap && window.ScrollTrigger){
       gsap.registerPlugin(ScrollTrigger);
       gsap.from('.hero .reveal', {y:30, opacity:0, duration:.82, stagger:.09, ease:'power3.out', delay:.12});
       gsap.to('#heroBoltWrap', {y:-16, rotate:1.8, duration:3.2, repeat:-1, yoyo:true, ease:'sine.inOut'});
@@ -809,6 +984,8 @@
     const typedWords = [
       'sites que convertem.',
       'automações que escalam.',
+      'APIs que conectam sistemas.',
+      'inteligência que se adapta.',
       'sistemas sob medida.',
       'experiências que marcam.',
       'protótipos que saem da tela.'
@@ -840,7 +1017,7 @@
       entries.forEach(entry=>{
         if(!entry.isIntersecting) return;
         const box=entry.target, frame=box.querySelector('iframe');
-        if(frame && !frame.src){
+        if(frame && !frame.src && finePointer && innerWidth > 760){
           frame.addEventListener('load', ()=>box.classList.add('loaded'), {once:true});
           frame.src=box.dataset.url;
         }
@@ -857,7 +1034,7 @@
     }));
 
     // Active nav by section
-    const sectionIds = ['servicos','projetos','resultados','lab','galeria','tecnologias','contato'];
+    const sectionIds = ['servicos','ophelia','apis','projetos','resultados','lab','galeria','tecnologias','contato'];
     const navMap = Object.fromEntries(sectionIds.map(id=>[id, $(`.nav-links a[href="#${id}"]`)]));
     const observer = new IntersectionObserver(entries=>{
       entries.forEach(entry=>{ if(entry.isIntersecting){ Object.values(navMap).forEach(el=>el && el.classList.remove('active')); navMap[entry.target.id]?.classList.add('active'); } });
@@ -877,6 +1054,7 @@
       'Cecília Sumaia': { type:['Site institucional','Branding','UX'], text:'Presença digital com construção de imagem, clareza e organização visual voltada a autoridade e apresentação.', url:'https://ceciliasuamaia.com.br' },
       'Yalle Tarique': { type:['Site institucional','Serviços','Conversão'], text:'Projeto digital para comunicar solução, credibilidade e facilitar o contato comercial.', url:'https://yalletarique.com.br' },
       'Surplus Contabilidade': { type:['Plataforma','Conteúdo','Negócios'], text:'Estrutura de presença digital e informação com foco em soluções empresariais e especialidades.', url:'https://surpluscontabilidade.com.br' },
+      'Russel Contabilidade': { type:['Site institucional','Contabilidade','Conversão'], text:'Presença digital para apresentar serviços contábeis com clareza, fortalecer a confiança da marca e facilitar o contato com empresas e empreendedores.', url:'https://www.russelcontabilidade.com.br/' },
       'Poderosa Beleza': { type:['E-commerce','Experiência','Branding'], text:'Projeto de presença digital e comércio eletrônico orientado a produto, navegação e identidade visual.', url:'https://poderosabeleza.com.br' },
       'Adega Virtual': { type:['E-commerce','Produto','Conversão'], text:'Ambiente voltado à exposição de catálogo, experiência de compra e apresentação dos itens.', url:'https://www.adegavirtual.com/' },
       'Brazilian Games': { type:['Marketplace','Growth','Comunidade'], text:'Projeto voltado ao ecossistema gamer, com foco em produto digital, comunicação, aquisição e experiência de marketplace.', url:'https://braziliangames.com.br' },
