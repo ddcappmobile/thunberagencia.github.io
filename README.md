@@ -56,3 +56,12 @@ O laboratório utiliza `Function` em Web Worker para testar exercícios locais. 
 ## Segurança e implantação
 
 Não envie credenciais do banco para o navegador. Não use token administrativo na variável `NEON_READONLY_TOKEN`. O Worker é intencionalmente somente leitura até existir um contrato de autenticação validado. CORS não substitui autenticação. Para produção, configure a origem exata e faça testes de acesso não autorizado.
+
+
+## Camada visual (novembro 2026)
+- Bootstrap 5.3.9 + Bootstrap Icons 1.13.2 por CDN; CSS local carregado depois para preservar os tokens da Thunber.
+- `assets/design-enhancements.css`: botões, cartões, acessibilidade, navegação responsiva, motion e modo claro/escuro.
+- `assets/design-enhancements.js`: menu móvel, foco/estado ativo, animação por interseção e helper de feedback.
+- Não altera endpoints, tabelas ou lógica de negócio.
+- O tom verde atual vem do MVP anterior; substituir pelos tokens oficiais assim que o CSS institucional estiver disponível.
+- Páginas `catalogo.html`, `curso.html`, `login.html` são legadas e precisam de revisão funcional antes de publicação.
