@@ -1,0 +1,9 @@
+name = "thunber-academy-api"
+main = "index.js"
+compatibility_date = "2026-11-01"
+
+# Configure no painel Cloudflare Workers > Settings > Variables and Secrets:
+# NEON_DATA_API_URL = https://SEU-ENDPOINT/neondb/rest/v1
+# ALLOWED_ORIGINS = https://thunber.com.br,https://www.thunber.com.br
+# NEON_READONLY_TOKEN = token de acesso de LEITURA autorizado pelo Neon, se aplicável
+# Não coloque tokens ou credenciais neste arquivo.

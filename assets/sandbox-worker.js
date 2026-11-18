@@ -1,0 +1,2 @@
+// Sandbox DIDÁTICO: worker com limite de tempo. NÃO é isolamento de segurança para código não confiável.
+self.onmessage=e=>{try{let {code,test}=e.data;let passed=Function('"use strict";\n'+code+'\nreturn Boolean('+test+');')();self.postMessage({passed,message:passed?'Todos os testes passaram.':'Revise a lógica e tente novamente.'})}catch(err){self.postMessage({passed:false,message:String(err.message||err).slice(0,200)})}};
